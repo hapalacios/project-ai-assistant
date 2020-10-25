@@ -5,7 +5,7 @@ import WeatherApp from '../../Components/WeatherApp/WeatherApp';
 import ReactCalendar from '../../Components/Calendar/Calendar';
 import 'react-calendar/dist/Calendar.css'
 import TextEditor from '../../Components/TextEditor';
-
+import Scheduler from '../../Components/Scheduler';
 import wordsToNumbers from 'words-to-numbers';
 import alanBtn from '@alan-ai/alan-sdk-web';
 import { Link, useHistory } from 'react-router-dom';
@@ -14,6 +14,8 @@ import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import Tabs from 'react-bootstrap/Tabs';
+import Tab from 'react-bootstrap/Tab';
 import Header from '../../Components/Header';
 import Messenger from "../../Components/Messenger";
 import { CardGroup } from 'react-bootstrap';
@@ -94,11 +96,11 @@ const ProAssistant = () => {
     let subheader = <div className="subheader">
                       <Container fluid >
                       
-                        {/* <Row md={1} lg={1} style={{ height: '100%' }} >
-                             <WeatherApp />
-
-                            <NewsCarousel articles={newsArticles} activeArticle={activeArticle} />
-                        </Row> */}
+                        <Row md={1} lg={1} style={{ height: '100%' }} >
+                            {/* <WeatherApp /> */}
+                             {/* <Scheduler /> */}
+                            {/* <NewsCarousel articles={newsArticles} activeArticle={activeArticle} /> */}
+                        </Row>
 
          {/* ROW 1 */}  
 
@@ -160,16 +162,15 @@ const ProAssistant = () => {
             {/* BODY  - CENTER  */}
 
                             <Col xs={6} md={1} lg={6}>
-                                <TextEditor/>
-                                
-                                {/* <Card bg={'light'} text={'dark'} style={{ width: '43rem' }}>
-                                    <Card.Body>
-                                        <Card.Img id="bodyID" className="body__center" variant="top" 
-                                           src={process.env.PUBLIC_URL + '/assets/images/google4.png'} />
-                                    </Card.Body>
-                                </Card> */}
+                                <Tabs defaultActiveKey="text-editor" id="tab-body">
+                                    <Tab eventKey="text-editor" title="Text Editor">
+                                          <TextEditor />
+                                    </Tab>
+                                    <Tab eventKey="scheduler" title="Scheduler">
+                                          <Scheduler />
+                                    </Tab>
+                                </Tabs>
                             </Col>
-
 
 
                             <Col xs={2} md={2} lg={3}>
@@ -181,9 +182,7 @@ const ProAssistant = () => {
                                 </Card>
                             </Col>
 
-
-
-                            
+            
                          </Row>   
 
                        </Container>
@@ -200,11 +199,13 @@ const ProAssistant = () => {
             <Header />
             <div>{subheader}</div>
             <div>{body}</div>
-            <div>{footer}</div>
+            <div>{footer}</div> 
         </div>
     )
 }
 export default ProAssistant;
+//Footer with send email to Developer capabilities coming for Sprint3.
+
 
 {/* <Messenger myUserID={'new_user'} newMessages={testMessages} /> */}
 

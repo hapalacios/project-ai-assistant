@@ -32,7 +32,7 @@ export default class Home extends React.Component {
     }
     render() {
         let menu = <div className="menu">
-                    <Container fluid >
+                    <Container fluid style={{ height: '88vh' }}>
                         <Row md={1} lg={1} style={{ height: '3rem' }} >
                         </Row>
                         <Row md ={2} lg={4} >

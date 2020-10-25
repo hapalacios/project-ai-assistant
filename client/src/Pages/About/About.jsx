@@ -34,7 +34,7 @@ export default class About extends React.Component {
    render() {
          return (
             <div className="about">
-               <Container fluid="true">
+               <Container fluid="true" >
                   <Header />
                </Container>
                <Container >
