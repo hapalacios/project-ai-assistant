@@ -1,0 +1,55 @@
+// Variables
+//Global colors
+$global-paragraph-color: #323232;
+$global-text-label-color: #AFAFAF;
+$global-text-field-color: #E1E1E1;
+$global-text-field-background: #FAFAFA;
+
+//Instock colors
+$instock-nav-background-color: #323232;
+$instock-primaryCTA-color: #004892;
+$instock-primaryCTA-color-hover: #002F5F;
+
+//Brainflix colors
+$bandsite-nav-background-color: #323232;
+$bandsite-primaryCTA-color: #0095FF;
+$bandsite-primaryCTA-color-hover: #0065AD;
+
+$global-style-color:#323232;
+
+$breakpoint-desktop: 1200px;
+$breakpoint-tablet: 768px;
+$breakpoint-mobile: 320px;
+  
+// Font Size - Desktop
+$f-size-h1-desk: convertRem(32px);
+$f-size-h2-desk: convertRem(20.05px);
+$f-size-h3-desk: convertRem(13.5px);
+$f-size-h4-desk: convertRem(11.73px);
+$f-size-h5-desk: convertRem(10.9px);
+
+// Font Size - Tablet
+$f-size-h1-tablet: convertRem(35.8px);
+$f-size-h2-tablet: convertRem(24px);
+$f-size-h3-tablet: convertRem(16.4px);
+$f-size-h4-tablet: convertRem(14px);
+$f-size-h5-tablet: convertRem(12px);
+
+// Font Size - Mobile
+$f-size-h1-mob: convertRem(25px);
+$f-size-h2-mob: convertRem(21px);
+$f-size-h3-mob: convertRem(17.5px);
+$f-size-h4-mob: convertRem(14.5px);
+$f-size-h5-mob: convertRem(12.2px);
+
+//Margins
+$left-margin-desk: 12.6vw;
+$left-margin-desk2: ($left-margin-desk + 6.2vw);
+$right-margin-desk: 12.6vw;
+$left-margin-tablet: 3.6vw;
+$right-margin-tablet: 3.6vw;
+$left-margin-mob: 4.5vw;
+$right-margin-mob: 4.5vw;
+
+// Defaul width page
+$width-page: 100%;

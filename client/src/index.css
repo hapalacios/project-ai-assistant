@@ -1,0 +1,17 @@
+#root, html, body {
+   height: 100vh;
+}
+
+body {
+  margin: 0;
+  background-color: rgba(130, 207, 243, 0.699);
+}
+
+* {
+   box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
