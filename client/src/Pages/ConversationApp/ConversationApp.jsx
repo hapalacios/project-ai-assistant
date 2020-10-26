@@ -10,7 +10,7 @@ import { useHistory } from 'react-router-dom';
 // import Col from 'react-bootstrap/Col';
 import Carousel from 'react-bootstrap/Carousel';
 import Header from '../../Components/Header';
-import Messenger from '../../Components/Messenger';
+import Messenger from '../../Components/Messenger/Messenger.jsx';
 import './ConversationApp.scss';
 
 const ConversationApp = () => {   

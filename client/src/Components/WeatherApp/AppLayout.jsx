@@ -15,7 +15,7 @@ const useStyles = makeStyles(theme => ({
   card: {
     padding: "0",
     margin: "0",
-    width:  270,
+    width:  '109%',
     height: 273,
     border: '1px solid transparent',
     backgroundColor: 'transparent'

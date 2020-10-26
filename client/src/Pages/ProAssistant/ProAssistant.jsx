@@ -17,7 +17,7 @@ import Col from 'react-bootstrap/Col';
 import Tabs from 'react-bootstrap/Tabs';
 import Tab from 'react-bootstrap/Tab';
 import Header from '../../Components/Header';
-import Messenger from "../../Components/Messenger";
+import MessengerMobile from "../../Components/Messenger/MessengerMobile.jsx";
 import { CardGroup } from 'react-bootstrap';
 
 import './ProAssistant.scss';
@@ -99,11 +99,9 @@ const ProAssistant = () => {
                              {/* <Scheduler /> */}
                             {/* <NewsCarousel articles={newsArticles} activeArticle={activeArticle} /> */}
                         {/* </Row> */}
-            {/* ROW 1 */}  
+        {/* ROW 1 */}  
                         <Row md={2} lg={3} >
-
             {/* CALENDAR CARD*/}
-            
                            <Col xs={6} md={1} lg={3} style={{ margin: '0', padding: '0' }}>
                                 <Card bg={'light'} text={'dark'} style={{ width: '21.6rem' }}>
                                     <Card.Body>
@@ -111,9 +109,7 @@ const ProAssistant = () => {
                                     </Card.Body>
                                 </Card>
                             </Col>
-
             {/* NEWS CARD*/}        
-
                              <Col xs={6} md={3} lg={6} style={{ margin: '0', padding: '0' }}>
                                 <Card bg={'light'} text={'dark'} style={{ width: '100%', height: '100%' }}>
                                     <Card.Body>
@@ -122,9 +118,9 @@ const ProAssistant = () => {
                                 </Card>
                             </Col>
 
-                 {/* WEATHER CARD*/}
+            {/* WEATHER CARD*/}
                              <Col xs={6} md={1} lg={3} style={{ margin: '0', padding: '0' }}>
-                                <Card bg={'light'} text={'dark'}  style={{ width: '20rem', margin: '0', padding: '0',  height: '100%'}}>
+                                <Card bg={'light'} text={'dark'}  style={{ width: '21.3rem', margin: '0', padding: '0',  height: '100%'}}>
                                 <Card.Body 
                                   style={{ width: '20rem', margin: '0', padding: '0', 
                                            marginTop: '0.9rem',  border: '1px solid transparent',
@@ -140,17 +136,13 @@ const ProAssistant = () => {
     let body = <div className="body">
                     {/* ROW 2 */}
                     <Row md={2} lg={3} >
-             {/* EMAIL and STOCK CARD*/}
+             {/* HINTS */}
                         <Col xs={6} md={1} lg={3} style={{ margin: '0', padding: '0'}}>
                             <Card bg={'light'} text={'dark'} style={{ width: '21.6rem', height: '100%' }}>
-                                <Card.Body>
-                                    <Card.Title>Email</Card.Title>
-                                    <Card.Img variant="top" src={process.env.PUBLIC_URL + '/assets/images/email1.jpg'} />
+                                <Card.Body >
+                                    <Card.Title>Hints</Card.Title>
+                                    <HintsCarousel className="hints-carousel" />
                                 </Card.Body>
-                                {/* <Card.Body>
-                                                    <Card.Title>Stock Market</Card.Title>
-                                                    <Card.Img variant="top" src={process.env.PUBLIC_URL + '/assets/images/stock-market.jpg'} />
-                                                </Card.Body> */}
                             </Card>
                         </Col>
 
@@ -167,13 +159,10 @@ const ProAssistant = () => {
                             </Tabs>
                         </Col>
 
-            {/*  HINTS  */}
+            {/*  MESSENGER  */}
                         <Col xs={2} md={2} lg={3} style={{ margin: '0', padding: '0' }}>
-                            <Card bg={'light'} text={'dark'} style={{ width: '20rem', height: '100%' }}>
-                                <Card.Body >
-                                    <Card.Title>Hints</Card.Title>
-                                    <HintsCarousel className="hints-carousel" />
-                                </Card.Body>
+                            <Card bg={'light'} text={'dark'} style={{ width: '21.3rem', height: '100%' }}>
+                                <MessengerMobile style={{ margin: '0', padding: '0'}} myUserID={myUserID} newMessages={newMessages && newMessages} />
                             </Card>
                         </Col>
                     </Row>   

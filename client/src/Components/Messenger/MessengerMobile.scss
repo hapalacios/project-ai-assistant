@@ -1,0 +1,36 @@
+.messenger-mobile {
+   display: grid;
+   margin-left: 0;
+   margin-bottom: 0;
+   padding: 0;
+   
+   height: 57.5vh;
+   background: #eeeef1;
+
+   grid-template-columns: 100% auto;
+   grid-template-rows: 60px auto 60px;
+   grid-column-gap: 1px;
+   grid-row-gap: 1px;
+}
+
+.container {
+   padding: 10px;
+}
+
+.scrollable-mobile {
+   position: relative;
+   overflow-y: scroll;
+   -webkit-overflow-scrolling: touch;
+}
+
+.sidebar {
+   background: white;
+   grid-row-start: 1;
+   grid-row-end: span 3;
+}
+
+.content-mobile {
+   background: white;
+   grid-row-start: 1;
+   grid-row-end: span 3;
+}
