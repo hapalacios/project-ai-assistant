@@ -94,21 +94,17 @@ const ProAssistant = () => {
 
     //Declare the visual sections: subheader, body and footer
     let subheader = <div className="subheader">
-                      <Container fluid >
-                      
-                        <Row md={1} lg={1} style={{ height: '100%' }} >
+                        {/* <Row md={1} lg={1} style={{ height: '100%' }} > */}
                             {/* <WeatherApp /> */}
                              {/* <Scheduler /> */}
                             {/* <NewsCarousel articles={newsArticles} activeArticle={activeArticle} /> */}
-                        </Row>
-
-         {/* ROW 1 */}  
-
+                        {/* </Row> */}
+            {/* ROW 1 */}  
                         <Row md={2} lg={3} >
 
             {/* CALENDAR CARD*/}
             
-                            <Col xs={6} md={1} lg={3}>
+                           <Col xs={6} md={1} lg={3} style={{ margin: '0', padding: '0' }}>
                                 <Card bg={'light'} text={'dark'} style={{ width: '21.6rem' }}>
                                     <Card.Body>
                                         <ReactCalendar />
@@ -118,18 +114,16 @@ const ProAssistant = () => {
 
             {/* NEWS CARD*/}        
 
-                            <Col xs={6} md={3} lg={6} >
-
+                             <Col xs={6} md={3} lg={6} style={{ margin: '0', padding: '0' }}>
                                 <Card bg={'light'} text={'dark'} style={{ width: '100%', height: '100%' }}>
                                     <Card.Body>
                                        <NewsCarousel articles={newsArticles && newsArticles} activeArticle={activeArticle} />
                                     </Card.Body>
                                 </Card>
-
                             </Col>
 
                  {/* WEATHER CARD*/}
-                            <Col xs={6} md={1} lg={3}>
+                             <Col xs={6} md={1} lg={3} style={{ margin: '0', padding: '0' }}>
                                 <Card bg={'light'} text={'dark'}  style={{ width: '20rem', margin: '0', padding: '0',  height: '100%'}}>
                                 <Card.Body 
                                   style={{ width: '20rem', margin: '0', padding: '0', 
@@ -141,65 +135,61 @@ const ProAssistant = () => {
                             </Col>
 
                         </Row>
-
-            {/* ROW 2 */}               
-
-                        <Row md={2} lg={3} >
-                            {/* EMAIL and STOCK CARD*/}
-                            <Col xs={6} md={1} lg={3}>
-                                <Card bg={'light'} text={'dark'} style={{ width: '21.6rem', height: '100%' }}>
-                                    <Card.Body>
-                                        <Card.Title>Email</Card.Title>
-                                        <Card.Img variant="top" src={process.env.PUBLIC_URL + '/assets/images/email1.jpg'} />
-                                    </Card.Body>
-                                    {/* <Card.Body>
-                                        <Card.Title>Stock Market</Card.Title>
-                                        <Card.Img variant="top" src={process.env.PUBLIC_URL + '/assets/images/stock-market.jpg'} />
-                                    </Card.Body> */}
-                                </Card>
-                            </Col>
-
-            {/* BODY  - CENTER  */}
-
-                            <Col xs={6} md={1} lg={6}>
-                                <Tabs defaultActiveKey="text-editor" id="tab-body">
-                                    <Tab eventKey="text-editor" title="Text Editor">
-                                          <TextEditor />
-                                    </Tab>
-                                    <Tab eventKey="scheduler" title="Scheduler">
-                                          <Scheduler />
-                                    </Tab>
-                                </Tabs>
-                            </Col>
-
-
-                            <Col xs={2} md={2} lg={3}>
-                                <Card bg={'light'} text={'dark'} style={{ width: '20rem', height: '100%' }}>
-                                    <Card.Body >
-                                        <Card.Title>Hints</Card.Title>
-                                        <HintsCarousel className="hints-carousel"/>
-                                    </Card.Body>
-                                </Card>
-                            </Col>
-
-            
-                         </Row>   
-
-                       </Container>
                     </div> 
+
     let body = <div className="body">
+                    {/* ROW 2 */}
+                    <Row md={2} lg={3} >
+             {/* EMAIL and STOCK CARD*/}
+                        <Col xs={6} md={1} lg={3} style={{ margin: '0', padding: '0'}}>
+                            <Card bg={'light'} text={'dark'} style={{ width: '21.6rem', height: '100%' }}>
+                                <Card.Body>
+                                    <Card.Title>Email</Card.Title>
+                                    <Card.Img variant="top" src={process.env.PUBLIC_URL + '/assets/images/email1.jpg'} />
+                                </Card.Body>
+                                {/* <Card.Body>
+                                                    <Card.Title>Stock Market</Card.Title>
+                                                    <Card.Img variant="top" src={process.env.PUBLIC_URL + '/assets/images/stock-market.jpg'} />
+                                                </Card.Body> */}
+                            </Card>
+                        </Col>
+
+             {/* BODY  - CENTER  */}
+
+                        <Col xs={3} md={3} lg={6} style={{ margin: '0', padding: '0'}}>
+                            <Tabs defaultActiveKey="text-editor" id="tab-body" >
+                                <Tab eventKey="text-editor" title="Text Editor">
+                                    <TextEditor />
+                                </Tab>
+                                <Tab eventKey="scheduler" title="Scheduler">
+                                    <Scheduler />
+                                </Tab>
+                            </Tabs>
+                        </Col>
+
+            {/*  HINTS  */}
+                        <Col xs={2} md={2} lg={3} style={{ margin: '0', padding: '0' }}>
+                            <Card bg={'light'} text={'dark'} style={{ width: '20rem', height: '100%' }}>
+                                <Card.Body >
+                                    <Card.Title>Hints</Card.Title>
+                                    <HintsCarousel className="hints-carousel" />
+                                </Card.Body>
+                            </Card>
+                        </Col>
+                    </Row>   
                </div>
     
     let footer = <div className="footer">
                  </div>
 
-
     return (
         <div>
             <Header />
-            <div>{subheader}</div>
-            <div>{body}</div>
-            <div>{footer}</div> 
+            <Container fluid>
+                <div>{subheader}</div>
+                <div>{body}</div>
+                <div>{footer}</div>
+            </Container> 
         </div>
     )
 }
