@@ -7,9 +7,9 @@ import { Container, Row, Col } from 'react-bootstrap';
 export default function Header() {
     return (
         <header className="header">
-            <Container>
-               <Row>
-                  <Col> 
+            <Container fluid>
+               <Row >
+                  <Col  > 
                       <Logo />
                   </Col>
                   <Col>

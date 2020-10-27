@@ -22,16 +22,11 @@ const ConversationApp = () => {
    // const[consec, setConsec] = useState(0);
    const[newMessages, setNewMessages] = useState([]);
    let history = useHistory();
-   // let tempNewMessages =[];
    let consec = 0;
 
    const getNewMessages = () => {
       setNewMessages([...newMessages, ...testMessages])
    }
-
-   // const getMyUserID = () => {
-   //    setMyUserID('new_user')
-   // }
 
    useEffect(() => {
       getNewMessages();
@@ -40,6 +35,7 @@ const ConversationApp = () => {
       alanBtn({
          key: '2261ebd22a2fd31af3071800c940abf72e956eca572e1d8b807a3e2338fdd0dc/stage',
          onCommand: ({ command }) => {
+
             if (command === 'newConversationLine1') {
                newMessages.push({
                      id: consec + 1,
@@ -135,8 +131,6 @@ const ConversationApp = () => {
       <div className="conversation-app__container">
          <Header />
          <div className="conversation-app">
-
-            <div className="conversation-app">
                <Carousel touch={false} keyboard={true}  >
                   <Carousel.Item interval={500}>
                      <img
@@ -161,9 +155,7 @@ const ConversationApp = () => {
                      </Carousel.Caption>
                   </Carousel.Item>
                </Carousel>
-            </div>
          </div>
-         
       </div>
    )
 }

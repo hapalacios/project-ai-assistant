@@ -57,15 +57,15 @@ export default class About extends React.Component {
                                  the Internet.
                               </Card.Text>
                               <Link className="about__linkedin-link" style={{ marginLeft:"1.8rem", marginRight: '1.8rem' }} 
-                                    to="https://linkedin.com/in/hectorpalacios">
+                                    to="/linkedin">
                                  <Button variant="outline-light">LinkedIn</Button>
                                </Link> 
                               <Link className="about__linkedin-link" style={{ marginRight: '1.8rem' }} 
-                                 to="https://github.com/hapalacios">
+                                 to="/github">
                                  <Button variant="outline-light">GitHub</Button>
                               </Link>
                               <Link className="about__linkedin-link" 
-                                 to="hapalacios@gmail.com">
+                                 to="/mail">
                                  <Button variant="outline-light">Email</Button>
                               </Link>
                            </Card.Body>
@@ -93,7 +93,7 @@ export default class About extends React.Component {
                                         style={{ marginBottom: '1rem' }}
                                         src={process.env.PUBLIC_URL + '/assets/images/assistant.jpg'} />
                               <Link className="home__proassistant-link"
-                                 to="https://github.com/hapalacios/project-ai-assistant">
+                                 to="/github/proassistant">
                                  <Button variant="primary">Go to Ai Assistant Code</Button>
                               </Link>
                            </Card.Body>
@@ -102,11 +102,12 @@ export default class About extends React.Component {
                      <Col xs={2} md={2}>
                         <Card bg={'light'} text={'dark'} style={{ width: '18rem', borderRadius:"8px" }}>
                            <Card.Body>
-                              <Card.Title>Alan Ai Professional Assistant</Card.Title>
+                              <Card.Title>Alan AI Professional Assistant</Card.Title>
                               <Card.Text>
-                                 Personal ai-assistant to help track daily activities, tasks, news, 
-                                 emails and navigate/search on the web only using our voice. Project 
-                                 undergoing. Tools: Figma, React, Javascript, Alan Studio API, MySQL, 
+                                 Personal AI-Assistant to help track daily activities, tasks, news, 
+                                 weather, and write text using your voice. Also there is a demo with
+                                 chatbot with chating and speaking capabilities. Sprint 1 Ver. 
+                                 Tools: React, Javascript, Alan Studio API, Adobe Photoshop,
                                  CSS and SASS.
                               </Card.Text>
                            </Card.Body>
@@ -120,7 +121,7 @@ export default class About extends React.Component {
                                  style={{ marginBottom: '1rem' }}
                                  src={process.env.PUBLIC_URL + '/assets/images/webdemo1.png'} />
                               <Link className="home__adidasproject-link" style={{ alignContent: 'center', left: '1rem' }}
-                                 to="https://github.com/hapalacios/adidas4dhackathon/">
+                                 to="/github/adidashackaton4d">
                                  <Button variant="primary" style={{ left: '2rem' }}>Go to Landing Page Code</Button>
                               </Link>
                            </Card.Body>

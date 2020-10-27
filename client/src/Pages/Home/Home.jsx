@@ -46,7 +46,7 @@ export default class Home extends React.Component {
                                             ai API.
                                         </Card.Text>
                                         <Link className="home__conversation-app-link" to="/conversationapp">
-                                            <Button variant="primary">Go somewhere</Button>
+                                            <Button variant="primary">Go Conversation App</Button>
                                         </Link>
                                     </Card.Body>
                                 </Card>
@@ -57,8 +57,8 @@ export default class Home extends React.Component {
                                     <Card.Body>
                                         <Card.Title>Professional-Ai Assistant</Card.Title>
                                         <Card.Text>
-                                            Ai assistant that is going to help you with information about stocks, news, weather, time,
-                                            email, tasks and writing text only using your voice.
+                                            Ai assistant that is going to help you with information about news, weather, time,
+                                            tasks; and also writing text only using your voice.
                                         </Card.Text>
                                         <Link className="home__proassistant-link" to="/proassistant">
                                             <Button variant="primary">Go Professional Assistant</Button>

@@ -1,5 +1,4 @@
 .conversation-app{
-     // background: url('/assets/images/conversation-background5.jpg') no-repeat;
      background-size: cover;
      width: 100%;
      height: 90vh;
@@ -7,9 +6,6 @@
      text-align: center;
      justify-content: center;
      object-fit: fill;
-
-     // position: absolute;
-     // z-index: -1;
 
      &__carousel-caption{
           color: black;
@@ -32,18 +28,9 @@
           color: blue;
           margin-left: 50%;
      }
-     .line4{
 
-     }
 }
 
 .alanBtn-root{
-     //position: relative;
      z-index: 1;
-     //visibility: hidden;
-
-     // margin-right: 112px;
-     // margin-bottom: 288px;
-
-     // transform: rotate(-18deg)
 }

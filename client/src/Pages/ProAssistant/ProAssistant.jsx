@@ -10,7 +10,6 @@ import wordsToNumbers from 'words-to-numbers';
 import alanBtn from '@alan-ai/alan-sdk-web';
 import { Link, useHistory } from 'react-router-dom';
 import Container from 'react-bootstrap/Container';
-import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -18,8 +17,6 @@ import Tabs from 'react-bootstrap/Tabs';
 import Tab from 'react-bootstrap/Tab';
 import Header from '../../Components/Header';
 import MessengerMobile from "../../Components/Messenger/MessengerMobile.jsx";
-import { CardGroup } from 'react-bootstrap';
-
 import './ProAssistant.scss';
 
 const ProAssistant = () => {   
@@ -63,7 +60,6 @@ const ProAssistant = () => {
                     history.push("/newfeatures")
                 } else if (command === 'go:about') {
                     history.push("/about")
-
                     
                 } else if (command === 'newHeadlines') {
                     setNewsArticles(articles);
@@ -94,11 +90,6 @@ const ProAssistant = () => {
 
     //Declare the visual sections: subheader, body and footer
     let subheader = <div className="subheader">
-                        {/* <Row md={1} lg={1} style={{ height: '100%' }} > */}
-                            {/* <WeatherApp /> */}
-                             {/* <Scheduler /> */}
-                            {/* <NewsCarousel articles={newsArticles} activeArticle={activeArticle} /> */}
-                        {/* </Row> */}
         {/* ROW 1 */}  
                         <Row md={2} lg={3} >
             {/* CALENDAR CARD*/}
@@ -184,9 +175,6 @@ const ProAssistant = () => {
 }
 export default ProAssistant;
 //Footer with send email to Developer capabilities coming for Sprint3.
-
-
-{/* <Messenger myUserID={'new_user'} newMessages={testMessages} /> */}
 
 var testNewsArticles = [
     {

@@ -1,0 +1,37 @@
+.new-features {
+   background-size: cover;
+   width: 100%;
+   height: 90vh;
+   align-items: center;
+   text-align: center;
+   justify-content: center;
+   object-fit: fill;
+
+   &__carousel-caption {
+      color: black;
+   }
+
+   &__background {
+      width: 100%;
+      height: 91vh;
+   }
+
+   &__text-line {
+      margin-left: 27%;
+      text-align: left;
+      color: black;
+      line-height: 0.87rem;
+      font-size: 0.87rem;
+   }
+
+   .line3 {
+      color: blue;
+      margin-left: 50%;
+   }
+
+   .line4 {}
+}
+
+.alanBtn-root {
+   z-index: 1;
+}
