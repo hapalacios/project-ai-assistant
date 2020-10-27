@@ -37,7 +37,6 @@ export default class NewFeatures extends React.Component {
                            alt="Press the arrows to go to the next slide"
                         />
                         <Carousel.Caption>
-                           {/* <h3>Say "Hi there"</h3> */}
                            <p className="new-features__carousel-caption">Press the blue button to start the conversation</p>
                         </Carousel.Caption>
                      </Carousel.Item>
@@ -48,6 +47,19 @@ export default class NewFeatures extends React.Component {
                            alt="Press the arrows to go to the previous slide"
                         />
                         <Carousel.Caption>
+                           <h4 className="text-line">Sprint 2:</h4>
+                           <p className="text-line"> - Text dictation to the Text editor </p>
+                           <p className="text-line"> - Reading Scheduled Tasks </p>
+                           <p className="text-line"> - Opening News</p>
+                           <p className="text-line"> - Searching on the Web</p>
+                           <br/>
+                           <h4 className="text-line">Sprint 3:</h4>
+                           <p className="text-line"> - Back-End implementation with MySQL </p>
+                           <p className="text-line"> - User Authentication </p>
+                           <p className="text-line"> - User data stored in MySQL</p>
+                           <p className="text-line"> - Chatbot messages are going to be stored DB</p>
+                           <p className="text-line">  </p>
+                           <br/>
                            <p className="new-features__carousel-caption">Press the blue button to call Alan AI</p>
                         </Carousel.Caption>
                      </Carousel.Item>

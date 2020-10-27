@@ -8,7 +8,7 @@
    object-fit: fill;
 
    &__carousel-caption {
-      color: black;
+      color: white;
    }
 
    &__background {
@@ -24,12 +24,12 @@
       font-size: 0.87rem;
    }
 
-   .line3 {
-      color: blue;
-      margin-left: 50%;
+   .text-line {
+      text-align: left;
+      color: black;
+      margin-left: 35%;
    }
 
-   .line4 {}
 }
 
 .alanBtn-root {
