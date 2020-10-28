@@ -30,7 +30,6 @@ const NewsCarouselCard = ({ article: { description, publishedAt, source, title, 
                title={title} />
             <div className="news-carousel-card__details">
                <p className="news-carousel-card__date">[{i + 1}]  {(new Date(publishedAt)).toDateString()}</p>
-               {/* <p className="news-carousel-card__date">[{i + 1}]  {(new Date(publishedAt)).toDateString()}</p> */}
                <p className="news-carousel-card__source">{source.name}</p>
             </div>
             <h4 className="news-carousel-card__title">{title}</h4>

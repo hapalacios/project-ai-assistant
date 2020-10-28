@@ -3,12 +3,9 @@
 @import "./partials/variables";
 @import "./partials/mixins";
 @import "./partials/fonts";
-//@import "~bootstrap/scss/bootstrap";
-//@import "../node_modules/bootstrap/scss/bootstrap";
 @import '../../node_modules/bootstrap/scss/bootstrap.scss';
 
-
-  // Setup of margins and padding 0 and call font family once
+// Setup of margins and padding 0 and call font family once
 body {
     //font-family: "Avenir";
     margin: 0;

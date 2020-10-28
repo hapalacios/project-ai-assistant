@@ -15,13 +15,6 @@ function NavBar() {
                   <Nav.Link href="/conversationapp">Quick Conversation</Nav.Link>
                   <Nav.Link href="/proassistant">Assistant</Nav.Link>
                   <Nav.Link href="/newfeatures">New Features</Nav.Link>
-                  {/* <NavDropdown title="New" id="basic-nav-dropdown">
-                     <NavDropdown.Item href="/newfeatures/teacherassistant">Teacher Assistant</NavDropdown.Item>
-                     <NavDropdown.Item href="/newfeatures/mentalassistant">Mental Health Assistant</NavDropdown.Item>
-                     <NavDropdown.Item href="/newfeatures/drivingassistant">Driving Assistant</NavDropdown.Item>
-                     <NavDropdown.Divider />
-                     <NavDropdown.Item href="#action/3.4">Other projects</NavDropdown.Item>
-                  </NavDropdown> */}
                   <Nav.Link href="/about">About</Nav.Link>
                </Nav>
             </Navbar.Collapse>

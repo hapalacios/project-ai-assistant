@@ -1,25 +1,13 @@
 import React, { useState, useEffect } from 'react';
-// import { Typography } from '@material-ui/core';
-// import wordsToNumbers from 'words-to-numbers';
 import alanBtn from '@alan-ai/alan-sdk-web';
 import { useHistory } from 'react-router-dom';
-// import Container from 'react-bootstrap/Container';
-// import Button from 'react-bootstrap/Button';
-// import Card from 'react-bootstrap/Card';
-// import Row from 'react-bootstrap/Row';
-// import Col from 'react-bootstrap/Col';
 import Carousel from 'react-bootstrap/Carousel';
 import Header from '../../Components/Header';
 import Messenger from '../../Components/Messenger/Messenger.jsx';
 import './ConversationApp.scss';
 
 const ConversationApp = () => {   
-   // const [activeArticle, setActiveArticle] = useState(0);
-   // const [newsArticles, setNewsArticles] = useState([]);
-   // const [isOpen, setIsOpen] = useState(false);
-   // const[alanBtnHidden, setAlanBtnHidden]= useState(true);
    const[myUserID] = useState("new_user")
-   // const[consec, setConsec] = useState(0);
    const[newMessages, setNewMessages] = useState([]);
    let history = useHistory();
    let consec = 0;
@@ -30,7 +18,6 @@ const ConversationApp = () => {
 
    useEffect(() => {
       getNewMessages();
-      // getMyUserID();
       
       alanBtn({
          key: '2261ebd22a2fd31af3071800c940abf72e956eca572e1d8b807a3e2338fdd0dc/stage',
@@ -139,7 +126,6 @@ const ConversationApp = () => {
                         alt="Press the blue button to call Alan AI"
                      />
                      <Carousel.Caption>
-                        {/* <h3>Say "Hi there"</h3> */}
                         <p className="conversation-app__carousel-caption">Press the blue button to start the conversation</p>
                      </Carousel.Caption>
                   </Carousel.Item>
@@ -223,4 +209,3 @@ var testMessages = [
       timestamp: new Date().getTime()
    },
 ]
-// var newMessages = []

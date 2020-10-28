@@ -42,8 +42,7 @@ export default class Home extends React.Component {
                                     <Card.Body>
                                         <Card.Title>Conversation App</Card.Title>
                                         <Card.Text>
-                                            A quick example on how to have a real conversation with an
-                                            ai API.
+                                            Chatbot App created to have a real conversation with Alan AI API.
                                         </Card.Text>
                                         <Link className="home__conversation-app-link" to="/conversationapp">
                                             <Button variant="primary">Go Conversation App</Button>
@@ -55,13 +54,13 @@ export default class Home extends React.Component {
                                 <Card bg={'light'} text={'dark'} style={{ width: '18rem' }}>
                                     <Card.Img variant="top" src={process.env.PUBLIC_URL + '/assets/images/assistant.jpg'} />
                                     <Card.Body>
-                                        <Card.Title>Professional-Ai Assistant</Card.Title>
+                                        <Card.Title>AI Assistant</Card.Title>
                                         <Card.Text>
-                                            Ai assistant that is going to help you with information about news, weather, time,
-                                            tasks; and also writing text only using your voice.
+                                            App developed to help you with information about news, weather, time,
+                                            tasks; and also writing a text file only using your voice.
                                         </Card.Text>
                                         <Link className="home__proassistant-link" to="/proassistant">
-                                            <Button variant="primary">Go Professional Assistant</Button>
+                                            <Button variant="primary">Go AI Assistant</Button>
                                         </Link>
                                     </Card.Body>
                                 </Card>
@@ -72,8 +71,8 @@ export default class Home extends React.Component {
                                         <Card.Body>
                                             <Card.Title>New Features</Card.Title>
                                             <Card.Text>
-                                                Future features and projects using Alan AI.
-                                                E.g. Teacher assistant, mental health assistant, driving assistant, etc.
+                                                Sprint 2 and 3 future features. E.g. User authentication; use MySQL DB
+                                                to store user profiles.
                                             </Card.Text>
                                             <Link className="home__newfeatures-link" to="/newfeatures">
                                                 <Button variant="primary">Go New Features</Button>

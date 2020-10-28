@@ -23,9 +23,6 @@ const ProAssistant = () => {
     const [activeArticle, setActiveArticle] = useState(0);
     const [newsArticles, setNewsArticles] = useState([]);
     const [isOpen, setIsOpen] = useState(false);
-
-    // const [firstRender, setFirstRender] = UseState(true)
-     // const[alanBtnHidden, setAlanBtnHidden]= useState(true);
     const [myUserID] = useState("new_user")
     const [newMessages, setNewMessages] = useState([]);
     let history = useHistory();

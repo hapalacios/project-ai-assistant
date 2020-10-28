@@ -1,6 +1,6 @@
 import React from "react";
 import AppLayout from "./AppLayout";
-// import WeatherSearch from "./WeatherSearch";
+// import WeatherSearch from "./WeatherSearch"; This is going to enabled in sprint 3 to do search and show live Weather of any city
 import * as weatherIcons from "../../JSON/icons";
 import * as recommendations from "../../JSON/recommendations.json";
 

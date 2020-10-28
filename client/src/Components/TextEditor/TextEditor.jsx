@@ -10,7 +10,6 @@ class TextEditor extends Component {
    render() {
       return (
          <div className="text-editor__container">
-            {/* <h2>Using CKEditor 5 build in React</h2> */}
             <CKEditor 
                editor={ClassicEditor} // Here you can change to classic version
                // editor={DecoupledEditor}
