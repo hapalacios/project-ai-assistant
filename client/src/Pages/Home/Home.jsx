@@ -7,7 +7,7 @@ import Card from 'react-bootstrap/Card';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Header from '../../Components/Header';
-
+import './Home.scss'
 export default class Home extends React.Component {
     state = {
         firstRender: true, alanBtnHidden: true, alanBtnInstance: null
@@ -31,7 +31,7 @@ export default class Home extends React.Component {
         });
     }
     render() {
-        let menu = <div className="menu">
+        let menu = <div className="home">
                     <Container fluid style={{ height: '88vh' }}>
                         <Row md={1} lg={1} style={{ height: '3rem' }} >
                         </Row>

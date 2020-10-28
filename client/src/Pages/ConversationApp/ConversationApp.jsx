@@ -160,11 +160,12 @@ const ConversationApp = () => {
    )
 }
 export default ConversationApp;
+
 var testMessages = [
    {
       id: 1,
       author: `new_user`,
-      message: 'Hello world! This is a long message that will hopefully get wrapped by our message bubble component! We will see how well it works.',
+      message: 'This is test a message. It is long enough to test the capabilities of the chatbot application.',
       timestamp: new Date().getTime()
    },
    {
@@ -176,7 +177,7 @@ var testMessages = [
    {
       id: 3,
       author: 'orange',
-      message: 'Hello world! This is a long message that will hopefully get wrapped by our message bubble component! We will see how well it works.',
+      message: 'This is test a message. It is long enough to test the capabilities of the chatbot application.',
       timestamp: new Date().getTime()
    },
    {
@@ -188,7 +189,7 @@ var testMessages = [
    {
       id: 5,
       author: `new_user`,
-      message: 'Hello world! This is a long message that will hopefully get wrapped by our message bubble component! We will see how well it works.',
+      message: 'This is test a message. It is long enough to test the capabilities of the chatbot application.',
       timestamp: new Date().getTime()
    },
    {
@@ -200,7 +201,7 @@ var testMessages = [
    {
       id: 7,
       author: 'orange',
-      message: 'Hello world! This is a long message that will hopefully get wrapped by our message bubble component! We will see how well it works.',
+      message: 'This is test a message. It is long enough to test the capabilities of the chatbot application.',
       timestamp: new Date().getTime()
    },
    {
@@ -212,7 +213,7 @@ var testMessages = [
    {
       id: 9,
       author: `new_user`,
-      message: 'Hello world! This is a long message that will hopefully get wrapped by our message bubble component! We will see how well it works.',
+      message: 'This is test a message. It is long enough to test the capabilities of the chatbot application.',
       timestamp: new Date().getTime()
    },
    {

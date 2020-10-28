@@ -5,7 +5,6 @@ import Home from '../Pages/Home';
 import ConversationApp from '../Pages/ConversationApp';
 import ProAssistant from '../Pages/ProAssistant';
 import NewFeatures from '../Pages/NewFeatures';
-import TeacherAssistant from '../Pages/TeacherAssistant';
 import About from '../Pages/About';
 import PageNotFound from '../Pages/PageNotFound';
 import { Layout } from '../Components/Layout/Layout';
@@ -27,7 +26,6 @@ class App extends React.Component {
                                 <Route exact path="/conversationapp" component={ConversationApp} />
                                 <Route exact path="/proassistant" component={ProAssistant} />
                                 <Route exact path="/newfeatures" component={NewFeatures} />
-                                <Route exact path="/newfeatures/teacherassistant" component={TeacherAssistant} />
                                 <Route exact path="/about" component={About} />
                                 <Route component={PageNotFound} />    
                             </Switch>
