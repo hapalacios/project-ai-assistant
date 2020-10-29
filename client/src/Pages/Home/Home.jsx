@@ -7,7 +7,7 @@ import Card from 'react-bootstrap/Card';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Header from '../../Components/Header';
-import './Home.scss'
+import './Home.scss';
 export default class Home extends React.Component {
     state = {
         firstRender: true, alanBtnHidden: true, alanBtnInstance: null
