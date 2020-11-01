@@ -3,13 +3,7 @@ import moment from 'moment';
 import './Message.scss';
 
 export default function Message(props) {
-    const {
-      data,
-      isMine,
-      startsSequence,
-      endsSequence,
-      showTimestamp
-    } = props;
+    const { data, isMine, startsSequence, endsSequence, showTimestamp } = props;
 
     const friendlyTimestamp = moment(data.timestamp).format('LLLL');
     return (

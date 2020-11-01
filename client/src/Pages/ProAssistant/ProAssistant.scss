@@ -1,7 +1,5 @@
-// .hints-carousel{
-//      margin: 0;
-//      //height: 12rem;
-// }
-// .weather-app{
-//      padding-top: 1rem;
-// }
+.body{
+   &__hints-title {
+      font-weight: 800;
+   }
+}

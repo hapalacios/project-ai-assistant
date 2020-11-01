@@ -18,7 +18,8 @@ export default function ConversationList(props) {
                     return {
                          photo: result.picture.large,
                          name: `${result.name.first} ${result.name.last}`,
-                         text: 'Hello world! This is a long message that needs to be truncated.'
+                         text: 'Hello there! This is a message used for test purposes for this application.'
+
                     };
                });
                setConversations([...conversations, ...newConversations])

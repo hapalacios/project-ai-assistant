@@ -3,7 +3,6 @@ import HintsCarousel from '../../Components/HintsCarousel';
 import NewsCarousel from '../../Components/NewsCarousel';
 import WeatherApp from '../../Components/WeatherApp/WeatherApp';
 import ReactCalendar from '../../Components/Calendar/Calendar';
-import 'react-calendar/dist/Calendar.css'
 import TextEditor from '../../Components/TextEditor';
 import Scheduler from '../../Components/Scheduler';
 import wordsToNumbers from 'words-to-numbers';
@@ -22,6 +21,8 @@ import './ProAssistant.scss';
 const ProAssistant = () => {   
     const [activeArticle, setActiveArticle] = useState(0);
     const [newsArticles, setNewsArticles] = useState([]);
+    const [key, setKey] = useState("text-editor");
+    const [textEditorData, setTextEditorData] = useState("Write some text here...");
     const [isOpen, setIsOpen] = useState(false);
     const [myUserID] = useState("new_user")
     const [newMessages, setNewMessages] = useState([]);
@@ -35,7 +36,7 @@ const ProAssistant = () => {
     const getNewsArticles = () => {
         setNewsArticles([...newsArticles, ...testNewsArticles])
     }
-
+ 
     useEffect(() => {
         getNewMessages();
         getNewsArticles();
@@ -57,7 +58,21 @@ const ProAssistant = () => {
                     history.push("/newfeatures")
                 } else if (command === 'go:about') {
                     history.push("/about")
-                    
+
+                } else if (command === 'go:texteditor') {
+                    setKey("text-editor");
+
+                } else if (command === 'write:texteditor') {
+                    setKey("text-editor");
+
+                } else if (command === 'read:texteditor') {
+                    setKey("text-editor");
+                    alanBtn().playText(textEditorData);
+
+                } else if (command === 'go:scheduler') {
+                    setKey("scheduler");
+
+
                 } else if (command === 'newHeadlines') {
                     setNewsArticles(articles);
                     // console.log(newsArticles)
@@ -90,34 +105,31 @@ const ProAssistant = () => {
         {/* ROW 1 */}  
                         <Row md={2} lg={3} >
             {/* CALENDAR CARD*/}
-                           <Col xs={6} md={1} lg={3} style={{ margin: '0', padding: '0' }}>
-                                <Card bg={'light'} text={'dark'} style={{ width: '21.6rem' }}>
-                                    <Card.Body>
-                                        <ReactCalendar />
+                            <Col xs={2} md={3} lg={3} style={{ margin: '0', padding: '0', height: "100%", borderRadius: "4px", width: "100%", textAlign:"center" }}>
+                                <Card bg={'light'} text={'dark'} style={{ margin: '0', padding: '0', width: "100%", height: "100%", borderRadius: "4px", textAlign:"center" }}>
+                                    <Card.Body style={{ height: "100%", alignContent:"center" }}>
+                                        <ReactCalendar style={{textAlign:"center"}} />
                                     </Card.Body>
                                 </Card>
                             </Col>
             {/* NEWS CARD*/}        
-                             <Col xs={6} md={3} lg={6} style={{ margin: '0', padding: '0' }}>
-                                <Card bg={'light'} text={'dark'} style={{ width: '100%', height: '100%' }}>
+                            <Col xs={3} md={3} lg={6} style={{ margin: '0', padding: '0', borderRadius: "4px", width: "100%" }}>
+                                <Card bg={'light'} text={'dark'} style={{ width: '100%', height: '100%', borderRadius: "4px" }}>
                                     <Card.Body>
                                        <NewsCarousel articles={newsArticles && newsArticles} activeArticle={activeArticle} />
                                     </Card.Body>
                                 </Card>
                             </Col>
-
             {/* WEATHER CARD*/}
-                             <Col xs={6} md={1} lg={3} style={{ margin: '0', padding: '0' }}>
-                                <Card bg={'light'} text={'dark'}  style={{ width: '21.3rem', margin: '0', padding: '0',  height: '100%'}}>
-                                <Card.Body 
-                                  style={{ width: '20rem', margin: '0', padding: '0', 
+                             <Col xs={2} md={3} lg={3} style={{ margin: '0', padding: '0', width: "100%" }}>
+                                <Card bg={'light'} text={'dark'}  style={{ width: "100%", margin: '0', padding: '0',  height: '100%'}}>
+                                    <Card.Body style={{   margin: '0', padding: '0', borderRadius: "4px",
                                            marginTop: '0.9rem',  border: '1px solid transparent',
                                            backgroundColor: 'transparent' }}>                                        
                                         <WeatherApp />
                                     </Card.Body>
                                 </Card>
                             </Col>
-
                         </Row>
                     </div> 
 
@@ -125,21 +137,22 @@ const ProAssistant = () => {
                     {/* ROW 2 */}
                     <Row md={2} lg={3} >
              {/* HINTS */}
-                        <Col xs={6} md={1} lg={3} style={{ margin: '0', padding: '0'}}>
-                            <Card bg={'light'} text={'dark'} style={{ width: '21.6rem', height: '100%' }}>
+                         <Col xs={2} md={3} lg={3} style={{ margin: '0', padding: '0' , borderRadius: "4px", width: "100%"}}>
+                           <Card bg={'light'} text={'dark'} style={{ width: '100%', height: '100%', borderRadius: "4px" }}>
                                 <Card.Body >
-                                    <Card.Title>Hints</Card.Title>
+                                    <Card.Title className="body__hints-title">Hints</Card.Title>
                                     <HintsCarousel className="hints-carousel" />
-                                </Card.Body>
+                                </Card.Body >
                             </Card>
                         </Col>
-
              {/* BODY  - CENTER  */}
-
-                        <Col xs={3} md={3} lg={6} style={{ margin: '0', padding: '0'}}>
-                            <Tabs defaultActiveKey="text-editor" id="tab-body" >
+                         <Col xs={3} md={3} lg={6} style={{ margin: '0', padding: '0', borderRadius: "4px", width: "100%"}}>
+                            <Tabs id="tab-body"
+                                  activeKey={key}
+                                  onSelect={(k) => setKey(k)}
+                             >
                                 <Tab eventKey="text-editor" title="Text Editor">
-                                    <TextEditor />
+                                    <TextEditor data={textEditorData && textEditorData}  />
                                 </Tab>
                                 <Tab eventKey="scheduler" title="Scheduler">
                                     <Scheduler />
@@ -148,9 +161,9 @@ const ProAssistant = () => {
                         </Col>
 
             {/*  MESSENGER  */}
-                        <Col xs={2} md={2} lg={3} style={{ margin: '0', padding: '0' }}>
-                            <Card bg={'light'} text={'dark'} style={{ width: '21.3rem', height: '100%' }}>
-                                <MessengerMobile style={{ margin: '0', padding: '0'}} myUserID={myUserID} newMessages={newMessages && newMessages} />
+                         <Col xs={2} md={3} lg={3} style={{ margin: '0', padding: '0', borderRadius: "4px", width: "21.3rem" }}>
+                             <Card bg={'light'} text={'dark'} style={{ width: '100%', height: '100%', borderRadius: "4px" }}>
+                                <MessengerMobile style={{ margin: '0', padding: '0', borderRadius: "4px"}} myUserID={myUserID} newMessages={newMessages && newMessages} />
                             </Card>
                         </Col>
                     </Row>   
@@ -381,7 +394,7 @@ var testMessages = [
     {
         id: 2,
         author: 'orange',
-        message: 'It looks like it wraps exactly as it is supposed to. Lets see what a reply looks like!',
+        message: 'The message is perfect and the content is wrapping perfectly in the bubble!',
         timestamp: new Date().getTime()
     },
     {
@@ -393,7 +406,7 @@ var testMessages = [
     {
         id: 4,
         author: `new_user`,
-        message: 'It looks like it wraps exactly as it is supposed to. Lets see what a reply looks like!',
+        message: 'The message is perfect and the content is wrapping perfectly in the bubble!',
         timestamp: new Date().getTime()
     },
     {
@@ -405,7 +418,7 @@ var testMessages = [
     {
         id: 6,
         author: `new_user`,
-        message: 'It looks like it wraps exactly as it is supposed to. Lets see what a reply looks like!',
+        message: 'The message is perfect and the content is wrapping perfectly in the bubble!',
         timestamp: new Date().getTime()
     },
     {
@@ -417,19 +430,19 @@ var testMessages = [
     {
         id: 8,
         author: 'orange',
-        message: 'It looks like it wraps exactly as it is supposed to. Lets see what a reply looks like!',
+        message: 'The message is perfect and the content is wrapping perfectly in the bubble!',
         timestamp: new Date().getTime()
     },
     {
         id: 9,
         author: `new_user`,
-        message: 'This is test a message. It is long enough to test the capabilities of the chatbot application.',
+        message: 'The message is perfect and the content is wrapping perfectly in the bubble!',
         timestamp: new Date().getTime()
     },
     {
         id: 10,
         author: `new_user`,
-        message: 'It looks like it wraps exactly as it is supposed to. Lets see what a reply looks like!',
+        message: 'The message is perfect and the content is wrapping perfectly in the bubble!',
         timestamp: new Date().getTime()
     },
 ]

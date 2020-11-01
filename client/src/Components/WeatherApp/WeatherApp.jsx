@@ -102,14 +102,14 @@ function mapDataToWeatherInterface(data) {
     date: data.dt * 1000,
     humidity: data.main.humidity,
     icon_id: data.weather[0].id,
-    temperature: data.main.temp,
+    temperature: data.main.temp, // HERE YOU CAN CONVERT FARENHEIT IF YOU WANT
     description: data.weather[0].description,
     wind_speed: Math.round(data.wind.speed * 3.6), // convert from m/s to km/h
     condition: data.cod
   };
 
   // remove undefined fields
-  Object.keys(mapped).forEach(
+  Object.keys(mapped).forEach(  
     key => mapped[key] === undefined && delete data[key]
   );
 

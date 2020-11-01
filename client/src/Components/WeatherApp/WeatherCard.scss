@@ -1,0 +1,61 @@
+.color_theme {
+   color: #2067e1;
+}
+.weather-card {
+   margin: 0;
+   padding: 0;
+   
+   &-component {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 255px;
+   
+      &__title{
+         margin: 0;
+         font-size: 1.2rem;
+         font-weight: 600;
+         margin-bottom: 0.7rem;
+      }
+
+      &__sub-title {
+         margin-bottom: 1rem;
+      }
+
+      &__temperature {
+         font-size: 2.1rem;
+         font-weight: 600;
+         margin: 0;
+         padding: 0;
+         margin-bottom: 0.4rem;
+      }
+
+      &__weather-icon{
+         font-size: 4.4rem;
+         float: right;  
+      }
+
+      &__atmospheric-conditions {
+         font-size: 0.92rem;
+         margin: 0;
+         padding: 0;
+
+         &-icon {
+            margin: 0;
+            padding: 0;
+         }
+
+         &-humidity {
+            margin-bottom: 0.8rem;
+         }
+      }
+
+      &__recommendation {
+         font-size: 0.94rem;
+         font-family: "Montserrat, sans-serif";
+         text-align: center;
+         margin: 0;
+         padding: 0;
+      }
+   }
+}

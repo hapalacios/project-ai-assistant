@@ -1,0 +1,29 @@
+.hints-carousel{
+   height: 92%;
+   padding-left: 0;
+   padding-right: 1%;
+   &__carousel{
+      background-color: #f4f8fb;
+      // background-color: #D6E4F0;
+      // background-color: #1E56A0;
+      border: 1px solid lightgray;
+      height: 100%;   
+      // color: white;
+      padding-left: 16%;
+      padding-right: 15%;
+      border-radius: 10px;
+   }
+   &__category, &__try-saying, &__title {
+      font-weight: 600;
+   }
+   &__try-saying{
+      margin-top:  2rem;
+      margin-bottom: 1rem;
+   }
+   &__text1 {
+      margin-bottom: 6rem;
+   }
+   &_text{
+      margin-bottom: 1rem;
+   }
+}

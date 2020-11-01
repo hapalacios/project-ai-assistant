@@ -7,12 +7,36 @@ import Card from 'react-bootstrap/Card';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Header from '../../Components/Header';
-import './Home.scss';
+import Modal from 'react-bootstrap/Modal';
+import InputGroup from 'react-bootstrap/InputGroup';
+import Form from 'react-bootstrap/Form';
+import FormControl from 'react-bootstrap/FormControl';
+import './Home.scss';  
+import * as yup from 'yup';
+import { Formik, Field } from "formik";
+
+const schema = yup.object({
+    username: yup.string().required(),
+    password: yup.string().required()
+});
+
 export default class Home extends React.Component {
     state = {
-        firstRender: true, alanBtnHidden: true, alanBtnInstance: null
+        firstRender: true, alanBtnHidden: true, alanBtnInstance: null, showModal: true, testMode:false, loginGranted:false
     }
+
+    handleClose = () => this.setState({showModal: false});
+    handleShow = () => this.setState({showModal: true});
+    handleTestMode = () => {
+        this.setState({ testMode: true });
+        this.setState({ showModal: false });
+    }
+
     componentDidMount() {
+
+        //If the user exits and there is not test mode activated
+
+
         this.alanBtnInstance = alanBtn({
             key: '2261ebd22a2fd31af3071800c940abf72e956eca572e1d8b807a3e2338fdd0dc/stage',
             onCommand: (commandData) => {
@@ -30,7 +54,88 @@ export default class Home extends React.Component {
             },
         });
     }
+
+    componentDidUpdate() {
+        //If the user exits and there is not test mode activated
+
+    }
+
+
     render() {
+        let loginModal = <Modal
+                            show={this.state.showModal}
+                            onHide={this.handleCloseModal}
+                            backdrop="static"
+                            keyboard={false}
+                        >
+                            <Modal.Header Login>
+                                <Modal.Title>User Login</Modal.Title>
+                            </Modal.Header>
+                            <Modal.Body>
+                                <Formik
+                                    validationSchema={schema}
+                                    onSubmit={console.log}
+                                    initialValues={{
+                                        username: 'Username',
+                                        password: 'Password',
+                                    }}
+                                >
+                                    {({
+                                        handleSubmit,
+                                        handleChange,
+                                        handleBlur,
+                                        values,
+                                        touched,
+                                        isValid,
+                                        errors,
+                                    }) => (
+                                            <Form noValidate onSubmit={handleSubmit}>
+                                                <Form.Row>
+                                                    <Form.Group as={Col} md="4" controlId="validationFormikUsername">
+                                                        <Form.Label>Username</Form.Label>
+                                                        <InputGroup>
+                                                            <Form.Control
+                                                                type="text"
+                                                                placeholder="Username"
+                                                                name="username"
+                                                                value={values.username}
+                                                                onChange={handleChange}
+                                                                isInvalid={!!errors.username}
+                                                            />
+                                                            <Form.Control.Feedback type="invalid">
+                                                                {errors.username}
+                                                            </Form.Control.Feedback>
+                                                        </InputGroup>
+                                                    </Form.Group>  
+                                                    <Form.Group as={Col} md="4" controlId="validationFormikPassword">
+                                                        <Form.Label>Password</Form.Label>
+                                                        <InputGroup>
+                                                            <Form.Control
+                                                                type="text"
+                                                                placeholder="Password"
+                                                                name="password"
+                                                                value={values.password}
+                                                                onChange={handleChange}
+                                                                isInvalid={!!errors.password}
+                                                            />
+                                                            <Form.Control.Feedback type="invalid">
+                                                                {errors.password}
+                                                            </Form.Control.Feedback>
+                                                        </InputGroup>
+                                                    </Form.Group>                                                
+                                                </Form.Row>
+                                            </Form>
+                                        )}
+                                </Formik>
+                            </Modal.Body>
+                                <Modal.Footer>
+                                    <Button variant="primary">Login</Button>
+                                    <Button variant="secondary" onClick={this.handleTestMode}>
+                                        Test Mode
+                                    </Button>
+                                </Modal.Footer>
+                            </Modal>
+                        
         let menu = <div className="home">
                     <Container fluid style={{ height: '88vh' }}>
                         <Row md={1} lg={1} style={{ height: '3rem' }} >
@@ -98,13 +203,14 @@ export default class Home extends React.Component {
                     </Container>
                 </div>
 
-        if (this.state.firstRender) {
-            this.setState({ firstRender: false })
-        return (
+        if (this.state.firstRender === true) {
+            return (
                 <>
+                {this.state.showModal === true ? loginModal : null}
                 <Header/>
                 <div>{menu}</div>
                 </>)
+            this.setState({ firstRender: false })
         } else {
             return (
                <>

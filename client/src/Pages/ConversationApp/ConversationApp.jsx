@@ -126,14 +126,14 @@ const ConversationApp = () => {
                         alt="Press the blue button to call Alan AI"
                      />
                      <Carousel.Caption>
-                        <p className="conversation-app__carousel-caption">Press the blue button to start the conversation</p>
+                        <p className="conversation-app__carousel-caption">Press the blue button to start a conversation</p>
                      </Carousel.Caption>
                   </Carousel.Item>
                   <Carousel.Item interval={800000}>
                      <img
                         className="conversation-app__background"
                         src={process.env.PUBLIC_URL + '/assets/images/conversation-background14.jpg'}
-                        alt="Press the blue  button again if you want to call Alan AI"
+                        alt="Press the blue button again to call Alan AI"
                      />
                      <Carousel.Caption>
                         <Messenger myUserID={myUserID} newMessages={newMessages && newMessages} />
@@ -147,6 +147,7 @@ const ConversationApp = () => {
 }
 export default ConversationApp;
 
+
 var testMessages = [
    {
       id: 1,
@@ -157,7 +158,7 @@ var testMessages = [
    {
       id: 2,
       author: 'orange',
-      message: 'It looks like it wraps exactly as it is supposed to. Lets see what a reply looks like!',
+      message: 'The message is perfect and the content is wrapping perfectly in the bubble!',
       timestamp: new Date().getTime()
    },
    {
@@ -169,7 +170,7 @@ var testMessages = [
    {
       id: 4,
       author: `new_user`,
-      message: 'It looks like it wraps exactly as it is supposed to. Lets see what a reply looks like!',
+      message: 'The message is perfect and the content is wrapping perfectly in the bubble!',
       timestamp: new Date().getTime()
    },
    {
@@ -181,7 +182,7 @@ var testMessages = [
    {
       id: 6,
       author: `new_user`,
-      message: 'It looks like it wraps exactly as it is supposed to. Lets see what a reply looks like!',
+      message: 'The message is perfect and the content is wrapping perfectly in the bubble!',
       timestamp: new Date().getTime()
    },
    {
@@ -193,19 +194,20 @@ var testMessages = [
    {
       id: 8,
       author: 'orange',
-      message: 'It looks like it wraps exactly as it is supposed to. Lets see what a reply looks like!',
+      message: 'The message is perfect and the content is wrapping perfectly in the bubble!',
       timestamp: new Date().getTime()
    },
    {
       id: 9,
       author: `new_user`,
-      message: 'This is test a message. It is long enough to test the capabilities of the chatbot application.',
+      message: 'The message is perfect and the content is wrapping perfectly in the bubble!',
       timestamp: new Date().getTime()
    },
    {
       id: 10,
       author: `new_user`,
-      message: 'It looks like it wraps exactly as it is supposed to. Lets see what a reply looks like!',
+      message: 'The message is perfect and the content is wrapping perfectly in the bubble!',
       timestamp: new Date().getTime()
    },
 ]
+
