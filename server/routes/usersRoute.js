@@ -17,8 +17,48 @@ router.use(cors());
 router.use(bodyParser.urlencoded({ extended: false }));
 router.use(bodyParser.json());
 
-// # 11 - Back-End: API to GET List of all Inventory Items starts
-// # 4 - Back-End: Diving Deeper - Implement Sorting starts
+
+const SELECT_ALL_USER_QUERY = 'SELECT * FROM USERS'
+
+const connection = mysql.createConnection({
+    host: 'localhost',
+    user: 'root',
+    password: 'rootroot',
+    database: 'aiassistant'
+})
+
+connection.connect(err => {
+    if(err) {
+        return err;
+    }
+})
+
+router.get('/', (req, res) => {
+    connection.query(SELECT_ALL_USER_QUERY, (err, results) => {
+        if(err) {
+            return res.send(err)
+        } else {
+            return res.json({
+                data: results
+            })
+        }
+    })
+})
+
+// router.get('/user/add', (req, res) => {
+//     const{ nome, sobrenome, email } = req.query
+//     const INSERT_USER_QUERY = `INSERT INTO users(userid, username, date, firstname, lastname) VALUES('${userid}', '${username}', '${date}')`
+//     connection.query(INSERT_USER_QUERY, (err, results) => {
+//         if(err) {
+//             return res.send(err)
+//         } else {
+//             return res.send('User added successfully')
+//         }
+//     })
+// })
+
+
+
 router.get('/', cors(), async (req,res) => {
   //const _ispublished = req.query.published;
   const match = {}
@@ -49,10 +89,8 @@ function sortResults(array, fieldProp, AscDesc) {
       }
   });
 }
-// # 11 - Back-End: API to GET List of all Inventory Items ends
-// # 4 - Back-End: Diving Deeper - Implement Sorting ends
 
-// # 10 - Back-End: API to GET a Single Inventory Item starts
+
  router.get(`/:id`, (req, res) => {
    const inventory = inventoriesREQ.find(
      (object) => object.id === req.params.id
@@ -74,9 +112,7 @@ function sortResults(array, fieldProp, AscDesc) {
      });
    }
  });
-// # 10 - Back-End: API to GET a Single Inventory Item ends
 
-// # 8 - Back-End: API to POST/CREATE a New Inventory Item 
 router.post("/", cors(), (req, res) => {
   const {
     id, warehouseID, warehouseName, itemName, description, category, status, quantity
@@ -114,9 +150,7 @@ router.post("/", cors(), (req, res) => {
   return res.status(200)
  }
 );
-// # 8 - Back-End: API to POST/CREATE a New Inventory Item
 
-// # 7 - Back-End: API to PUT/PATCH/EDIT an Inventory Item stars
 router.patch('/:id', cors(), (req, res) => {
   console.log(req.body)
   if (req.body !== undefined) {
@@ -177,7 +211,6 @@ router.patch('/:id', cors(), (req, res) => {
 });
 // # 7 - Back-End: API to PUT/PATCH/EDIT a Inventories ends
 
-// # 6 - Back-End: API to DELETE a Inventory - Delete Start here
 //app.delete('/inventories/:id', checkInvetoryExists, (req, res) => {
 router.delete('/:id', cors(), (req, res, next) => {
     const { id } = req.params;
@@ -213,6 +246,5 @@ router.delete('/:id', cors(), (req, res, next) => {
         });
      }  
   });
-  // # 6 - Delete Item Ends here
 
   module.exports = router;

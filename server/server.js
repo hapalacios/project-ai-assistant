@@ -7,7 +7,7 @@ const usersRoute = require("./routes/usersRoute");
 // const warehousesRoute = require("./routes/warehousesRoute");
 // const inventoriesRoute = require("./routes/inventoriesRoute");
 const cors = require("cors");
-const mysql = require('mysql')
+const mysql = require('mysql');
 
 
 var corsOptions = {
@@ -17,12 +17,27 @@ var corsOptions = {
 app.use(express.json());
 app.use(cors(corsOptions));
 
+const SELECT_ALL_USER_QUERY = 'SELECT * FROM USERS'
+
+const connection = mysql.createConnection({
+    host: 'localhost',
+    user: 'root',
+    password: 'rootroot',
+    database: 'aiassistant'
+})
+
+connection.connect(err => {
+    if(err) {
+        return err;
+    }
+})
+
+
 // parse requests of content-type - application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(bodyParser.json());
 
-const db = require("./app/models");
 
 
  // # User verbs: GET, PUT, POST, DELETE

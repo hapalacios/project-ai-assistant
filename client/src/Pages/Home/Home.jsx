@@ -15,6 +15,9 @@ import './Home.scss';
 import * as yup from 'yup';
 import { Formik, Field } from "formik";
 
+const url = 'http://localhost:8080';
+const keyAPI = '' //'?api_key=531deb1a-6b0d-471b-8d77-fe101407ff7e';
+
 const schema = yup.object({
     username: yup.string().required(),
     password: yup.string().required()
@@ -22,7 +25,7 @@ const schema = yup.object({
 
 export default class Home extends React.Component {
     state = {
-        firstRender: true, alanBtnHidden: true, alanBtnInstance: null, showModal: true, testMode:false, loginGranted:false
+        firstRender: true, alanBtnHidden: true, alanBtnInstance: null, showModal: true, testMode:false, loginGranted:false, usersArray: []
     }
 
     handleClose = () => this.setState({showModal: false});
@@ -31,10 +34,42 @@ export default class Home extends React.Component {
         this.setState({ testMode: true });
         this.setState({ showModal: false });
     }
+    getUsers = () => {
+        // fetch('http://localhost:4000/users')
+        //     .then(response => response.json())
+        //     .then(response => this.setState({ usersArray: response.data }))
+        //     .catch(err => console.log(err))
+
+        const config = {
+            method: 'get',
+            url: `${url}${keyAPI}`,
+            headers: {},
+            data: ''
+        };
+        axios(config)
+            .then(res => {
+                let maxConsec = Object.keys(res.data).length
+                let dataSort = res.data.sort((a, b) => { return b.consec - a.consec; })
+                this.setState({
+                    videoList: dataSort,
+                    videoSelected: dataSort.find(video => video.consec === maxConsec),
+                    actualVideo: dataSort.find(video => video.consec === maxConsec).id
+                })
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth',
+                })
+            })
+            .catch(err => {
+                console.log(err);
+                this.props.history.push('/register')
+            })
+    }
 
     componentDidMount() {
 
         //If the user exits and there is not test mode activated
+        this.getUsers()
 
 
         this.alanBtnInstance = alanBtn({
