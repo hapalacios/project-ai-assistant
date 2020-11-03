@@ -1,7 +1,7 @@
 {
   "name": "server",
   "version": "1.0.0",
-  "description": "instock backend",
+  "description": "ai assistant backend",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -10,16 +10,22 @@
   "license": "ISC",
   "dependencies": {
     "axios": "^0.20.0",
+    "body-parser": "^1.19.0",
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "fix": "0.0.6",
     "install": "^0.13.0",
+    "jest": "^26.6.3",
     "jsonwebtoken": "^8.5.1",
+    "lodash": "^4.17.20",
     "mini-create-react-context": "^0.4.0",
-    "nodemon": "^2.0.4",
+    "mysql2": "^2.2.5",
+    "nodemon": "^2.0.6",
     "react-router": "^5.2.0",
     "react-router-dom": "^5.2.0",
-    "request": "^2.88.2"
+    "react-scripts": "^4.0.0",
+    "request": "^2.88.2",
+    "yargs": "^16.1.0"
   }
 }

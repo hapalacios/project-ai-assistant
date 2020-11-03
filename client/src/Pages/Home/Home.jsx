@@ -6,16 +6,17 @@ import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import Header from '../../Components/Header';
 import Modal from 'react-bootstrap/Modal';
 import InputGroup from 'react-bootstrap/InputGroup';
 import Form from 'react-bootstrap/Form';
 import FormControl from 'react-bootstrap/FormControl';
-import './Home.scss';  
 import * as yup from 'yup';
 import { Formik, Field } from "formik";
+import axios from 'axios';
+import Header from '../../Components/Header';
+import './Home.scss';  
 
-const url = 'http://localhost:8080';
+const globalUrl = 'http://localhost:8080';
 const keyAPI = '' //'?api_key=531deb1a-6b0d-471b-8d77-fe101407ff7e';
 
 const schema = yup.object({
@@ -25,7 +26,8 @@ const schema = yup.object({
 
 export default class Home extends React.Component {
     state = {
-        firstRender: true, alanBtnHidden: true, alanBtnInstance: null, showModal: true, testMode:false, loginGranted:false, usersArray: []
+        firstRender: true, alanBtnHidden: true, alanBtnInstance: null, 
+        showModal: true, testMode:false, loginGranted:false, usersArray: [], actualUser: 0
     }
 
     handleClose = () => this.setState({showModal: false});
@@ -35,34 +37,41 @@ export default class Home extends React.Component {
         this.setState({ showModal: false });
     }
     getUsers = () => {
-        // fetch('http://localhost:4000/users')
+        const url = globalUrl + '/users'
+        const config = {
+            method: 'get',
+            url: `${url}${keyAPI}`,
+            headers: {
+                'Authorization': 'Basic cm9vdDpyb290cm9vdA=='
+            }
+        };
+
+        //'http://localhost:4000/users'
+        // fetch(url)
         //     .then(response => response.json())
         //     .then(response => this.setState({ usersArray: response.data }))
         //     .catch(err => console.log(err))
 
-        const config = {
-            method: 'get',
-            url: `${url}${keyAPI}`,
-            headers: {},
-            data: ''
-        };
         axios(config)
-            .then(res => {
-                let maxConsec = Object.keys(res.data).length
-                let dataSort = res.data.sort((a, b) => { return b.consec - a.consec; })
+            .then(response => {
+                //let maxConsec = Object.keys(res.data).length
+                //let dataSort = res.data.sort((a, b) => { return b.consec - a.consec; })
                 this.setState({
-                    videoList: dataSort,
-                    videoSelected: dataSort.find(video => video.consec === maxConsec),
-                    actualVideo: dataSort.find(video => video.consec === maxConsec).id
+                    usersArray: response.data
                 })
+                console.log('you are here')
+                console.log(this.state.usersArray)
                 window.scrollTo({
                     top: 0,
                     behavior: 'smooth',
                 })
             })
-            .catch(err => {
-                console.log(err);
-                this.props.history.push('/register')
+            .catch(error => {
+                console.log(error);
+                
+                // see why is sending here
+                console.log('you are in error')
+                //this.props.history.push('/register')
             })
     }
 

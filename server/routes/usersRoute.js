@@ -3,6 +3,8 @@
 const express = require('express');
 const app = express();
 const cors = require('cors');
+const mysql = require('mysql2');
+
 const bodyParser = require('body-parser');
 const fs = require('fs'); //commonjs format
 const { Router } = require('express');
@@ -18,13 +20,13 @@ router.use(bodyParser.urlencoded({ extended: false }));
 router.use(bodyParser.json());
 
 
-const SELECT_ALL_USER_QUERY = 'SELECT * FROM USERS'
+const SELECT_ALL_USER_QUERY = 'USE AIASSISTANT; SELECT * FROM USERS;'
 
 const connection = mysql.createConnection({
-    host: 'localhost',
+    host: 'hectormac.local',
     user: 'root',
     password: 'rootroot',
-    database: 'aiassistant'
+    database: 'AIASSISTANT'
 })
 
 connection.connect(err => {
@@ -57,27 +59,25 @@ router.get('/', (req, res) => {
 //     })
 // })
 
+// router.get('/', cors(), async (req,res) => {
+//   //const _ispublished = req.query.published;
+//   const match = {}
+//   const sort  = {}
 
+//   // if(req.query.published){
+//   //     match.published = req.query.published === 'true'
+//   // }
 
-router.get('/', cors(), async (req,res) => {
-  //const _ispublished = req.query.published;
-  const match = {}
-  const sort  = {}
-
-  // if(req.query.published){
-  //     match.published = req.query.published === 'true'
-  // }
-
-  if(req.query.sortBy && req.query.OrderBy){
-     inventoriesREQ = sortResults(inventoriesREQ, req.query.sortBy, req.query.OrderBy);  
+//   if(req.query.sortBy && req.query.OrderBy){
+//      inventoriesREQ = sortResults(inventoriesREQ, req.query.sortBy, req.query.OrderBy);  
   
-  // Statement for deep search from back-end
-  // if there is any params filter that information
-  } else { 
+//   // Statement for deep search from back-end
+//   // if there is any params filter that information
+//   } else { 
  
-  }
-  res.status(200).send(inventoriesREQ);
-})
+//   }
+//   res.status(200).send(inventoriesREQ);
+// })
 function sortResults(array, fieldProp, AscDesc) {
   return array.sort(function(a, b) {
       if (AscDesc === 'asc' || AscDesc === 'ASC' || AscDesc === 'Asc') {
