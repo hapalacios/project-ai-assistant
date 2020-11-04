@@ -17,8 +17,6 @@ const mysql = require('mysql2');
 
 app.use(express.json());
 
-const SELECT_ALL_USER_QUERY = 'SELECT * FROM users;'
-
 const connection = mysql.createConnection({
   //hectormac.local
     host: 'localhost',
@@ -41,19 +39,43 @@ app.get('/', (_req, res) =>{
 })
 
 app.get('/users', (_req, res) => {
+    const SELECT_ALL_USER_QUERY = 'SELECT * FROM users;'
     connection.query(SELECT_ALL_USER_QUERY, (err, results) => {
         if(err) {
-            console.log('error 101')
-            return res.send(err)
+            return res.status(404).send(err);
         } else {
-            console.log(results)
-            return res.json({
-                data: results
-            })
+            return res.status(200).json({ data: results });
         }
     })
 })
 
+ app.get(`/users/:id`, (req, res) => {
+    const SELECT_ALL_USER_QUERY = 'SELECT * FROM users where userid = ' + req.params.id + ";"
+    
+    connection.query(SELECT_ALL_USER_QUERY, (err, results) => {
+        if(err) {
+            return  res.status(404).send({
+                          error: "No user with that id exists",
+                    });
+        } else {
+            return res.status(200).json({ data: results });
+        }
+    })
+ });
+
+  app.get(`/users/username/:id`, (req, res) => {
+    const SELECT_ALL_USER_QUERY = `SELECT * FROM users where username = '${req.params.id}'  `
+    
+    connection.query(SELECT_ALL_USER_QUERY, (err, results) => {
+        if(err) {
+            return  res.status(404).send({
+                          error: "No user with that username exists",
+                    });
+        } else {
+            return res.status(200).json({ data: results });
+        }
+    })
+ });
 
 
 // parse requests of content-type - application/x-www-form-urlencoded

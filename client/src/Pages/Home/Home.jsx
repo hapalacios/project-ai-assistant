@@ -1,6 +1,6 @@
 import React  from 'react';
 import alanBtn from '@alan-ai/alan-sdk-web';
-import { Link, useHistory } from 'react-router-dom';
+import { matchPath, Link, useHistory } from 'react-router-dom';
 import Container from 'react-bootstrap/Container';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
@@ -15,6 +15,7 @@ import { Formik, Field } from "formik";
 import axios from 'axios';
 import Header from '../../Components/Header';
 import './Home.scss';  
+import { FormGroup } from 'react-bootstrap';
 
 const globalUrl = 'http://localhost:8080';
 const keyAPI = '' //'?api_key=531deb1a-6b0d-471b-8d77-fe101407ff7e';
@@ -24,18 +25,116 @@ const schema = yup.object({
     password: yup.string().required()
 });
 
+function getParams(pathname) {
+    const matchProfile = matchPath(pathname, {
+        path: `/users/:id`,
+    });
+    return (matchProfile && matchProfile.params) || {};
+};
+
 export default class Home extends React.Component {
     state = {
         firstRender: true, alanBtnHidden: true, alanBtnInstance: null, 
-        showModal: true, testMode:false, loginGranted:false, usersArray: [], actualUser: 0
+        showModal: true, testMode:false, loginGranted:false, usersArray: [], 
+        userSelected:{}, actualUser: 0,  validated: false
     }
 
-    handleClose = () => this.setState({showModal: false});
-    handleShow = () => this.setState({showModal: true});
+    async componentDidMount() {
+        // console.log(this.props.match.params.id)
+        //const id = this.props.match.params.id;
+        await this.getUsers;
+
+        this.alanBtnInstance = alanBtn({
+            key: '2261ebd22a2fd31af3071800c940abf72e956eca572e1d8b807a3e2338fdd0dc/stage',
+            onCommand: (commandData) => {
+                if (commandData.command === 'go:conversation') {
+                    this.props.history.push("/conversationapp")
+                } else if (commandData.command === 'go:assistant') {
+                    this.props.history.push("/proassistant")
+                } else if (commandData.command === 'go:newfeatures') {
+                    this.props.history.push("/newfeatures")
+                } else if (commandData.command === 'go:teacherassistant') {
+                    this.props.history.push("/newfeatures/teacherassistant")
+                } else if (commandData.command === 'go:about') {
+                    this.props.history.push("/about")
+                }
+            },
+        });
+    }
+
+    componentDidUpdate(PrevState) {
+        const { pathname } = this.props.location;
+        const prevPathname = PrevState.location.pathname;
+        // console.log(pathname)
+        // console.log(prevPathname)
+
+        // const currentParams = getParams(pathname);
+        // const prevParams = getParams(prevPathname);
+
+        // if (currentParams.id !== prevParams.id) {
+        //     if (currentParams.id !== undefined) {
+        //         this.getUsers;
+        //     }
+        // }
+    }
+
+    handleClose = () => this.setState({ showModal: false });
+    handleShow = () => this.setState({ showModal: true });
     handleTestMode = () => {
         this.setState({ testMode: true });
         this.setState({ showModal: false });
     }
+
+    handleChange = event => {
+        event.preventDefault();
+        if (event.target.value) {
+            if (event.target.value.length > 0) {
+                let usernameTemp = event.target.value
+                this.getUser(usernameTemp);
+            }    
+        }   
+    } 
+
+    handleSubmit = event => {     
+        event.preventDefault();
+  
+        const form = event.currentTarget;
+        if (form.checkValidity() === false) {
+            event.preventDefault();
+            event.stopPropagation();
+        }
+     
+        let usernameTemp = event.currentTarget.validationUsername.value;
+        let passwordTemp = event.currentTarget.validationPassword.value;
+
+        this.getUser(usernameTemp);
+
+        if (usernameTemp && passwordTemp) {
+
+            let userTemp = this.state.userSelected
+
+             if (userTemp) {
+                if (passwordTemp === userTemp.password) {
+                    //Access Granted
+                    setTimeout(() => {
+                        this.setState({ actualUser: userTemp.userid });
+                        this.setState({ validated: true });
+                        this.setState({ showModal: false })
+                        this.setState({ firstRender: false });
+                    }, 80);
+
+                }
+            }
+            else {
+                alert("Check your password and try again");
+            }    
+
+        } else {
+            alert("Login/Password incorrect!")
+        }
+        
+    }  
+
     getUsers = () => {
         const url = globalUrl + '/users'
         const config = {
@@ -46,12 +145,6 @@ export default class Home extends React.Component {
             }
         };
 
-        //'http://localhost:4000/users'
-        // fetch(url)
-        //     .then(response => response.json())
-        //     .then(response => this.setState({ usersArray: response.data }))
-        //     .catch(err => console.log(err))
-
         axios(config)
             .then(response => {
                 //let maxConsec = Object.keys(res.data).length
@@ -59,8 +152,6 @@ export default class Home extends React.Component {
                 this.setState({
                     usersArray: response.data
                 })
-                console.log('you are here')
-                console.log(this.state.usersArray)
                 window.scrollTo({
                     top: 0,
                     behavior: 'smooth',
@@ -74,36 +165,49 @@ export default class Home extends React.Component {
                 //this.props.history.push('/register')
             })
     }
+    // getUser = (username) => {
+    //     const url = globalUrl + '/users/username/' + username
+    //     const config = {
+    //         method: 'get',
+    //         url: `${url}${keyAPI}`,
+    //         headers: {
+    //             'Authorization': 'Basic cm9vdDpyb290cm9vdA=='
+    //         }
+    //     };
 
-    componentDidMount() {
+    //      axios(config)
+    //         .then(response => {
+    //             this.setState({
+    //                 userSelected: response.data
+    //             })
+    //         })
+    //         .catch(error => {
+    //             console.log(error);
+    //         })
+    // }
+     
+    getUser = (username) => {
+        const url = globalUrl + '/users' 
+        const config = {
+            method: 'get',
+            url: `${url}${keyAPI}`,
+            headers: {
+                'Authorization': 'Basic cm9vdDpyb290cm9vdA=='
+            }
+        };
 
-        //If the user exits and there is not test mode activated
-        this.getUsers()
-
-
-        this.alanBtnInstance = alanBtn({
-            key: '2261ebd22a2fd31af3071800c940abf72e956eca572e1d8b807a3e2338fdd0dc/stage',
-            onCommand: (commandData) => {
-                if (commandData.command === 'go:conversation') {
-                    this.props.history.push("/conversationapp")
-                } else if (commandData.command === 'go:assistant'){
-                    this.props.history.push("/proassistant")
-                } else if (commandData.command === 'go:newfeatures') {
-                    this.props.history.push("/newfeatures")
-                } else if (commandData.command === 'go:teacherassistant') {
-                    this.props.history.push("/newfeatures/teacherassistant")
-                } else if (commandData.command === 'go:about') {
-                    this.props.history.push("/about")
-                }  
-            },
-        });
+        axios(config)
+            .then(response => {
+                this.setState({
+                    userSelected: response.data.data.find(
+                        (user) => user.username == username
+                    )
+                })
+            })
+            .catch(error => {
+                console.log(error);
+            })
     }
-
-    componentDidUpdate() {
-        //If the user exits and there is not test mode activated
-
-    }
-
 
     render() {
         let loginModal = <Modal
@@ -112,72 +216,53 @@ export default class Home extends React.Component {
                             backdrop="static"
                             keyboard={false}
                         >
-                            <Modal.Header Login>
+                            <Modal.Header >
                                 <Modal.Title>User Login</Modal.Title>
                             </Modal.Header>
                             <Modal.Body>
-                                <Formik
-                                    validationSchema={schema}
-                                    onSubmit={console.log}
-                                    initialValues={{
-                                        username: 'Username',
-                                        password: 'Password',
-                                    }}
-                                >
-                                    {({
-                                        handleSubmit,
-                                        handleChange,
-                                        handleBlur,
-                                        values,
-                                        touched,
-                                        isValid,
-                                        errors,
-                                    }) => (
-                                            <Form noValidate onSubmit={handleSubmit}>
-                                                <Form.Row>
-                                                    <Form.Group as={Col} md="4" controlId="validationFormikUsername">
-                                                        <Form.Label>Username</Form.Label>
-                                                        <InputGroup>
-                                                            <Form.Control
-                                                                type="text"
-                                                                placeholder="Username"
-                                                                name="username"
-                                                                value={values.username}
-                                                                onChange={handleChange}
-                                                                isInvalid={!!errors.username}
-                                                            />
-                                                            <Form.Control.Feedback type="invalid">
-                                                                {errors.username}
-                                                            </Form.Control.Feedback>
-                                                        </InputGroup>
-                                                    </Form.Group>  
-                                                    <Form.Group as={Col} md="4" controlId="validationFormikPassword">
-                                                        <Form.Label>Password</Form.Label>
-                                                        <InputGroup>
-                                                            <Form.Control
-                                                                type="text"
-                                                                placeholder="Password"
-                                                                name="password"
-                                                                value={values.password}
-                                                                onChange={handleChange}
-                                                                isInvalid={!!errors.password}
-                                                            />
-                                                            <Form.Control.Feedback type="invalid">
-                                                                {errors.password}
-                                                            </Form.Control.Feedback>
-                                                        </InputGroup>
-                                                    </Form.Group>                                                
-                                                </Form.Row>
-                                            </Form>
-                                        )}
-                                </Formik>
-                            </Modal.Body>
-                                <Modal.Footer>
-                                    <Button variant="primary">Login</Button>
+                                <Form noValidate validated={this.state.validated}
+                                      onSubmit={this.handleSubmit} >
+                                    <Form.Row>
+                                        <Form.Group as={Col} md="4" controlId="validationUsername">
+                                            <Form.Label>Username</Form.Label>
+                                            <InputGroup>
+                                                <Form.Control
+                                                    required
+                                                    type="text"
+                                                    placeholder="Username"
+                                                    defaultValue="Username"
+                                                    onChange={this.handleChange}
+                                                />
+                                                <Form.Control.Feedback type="invalid">
+                                                    Please choose a correct username
+                                                </Form.Control.Feedback>
+                                            </InputGroup>
+                                        </Form.Group>  
+                                        <Form.Group as={Col} md="4" controlId="validationPassword">
+                                            <Form.Label>Password</Form.Label>
+                                            <InputGroup>
+                                                <Form.Control
+                                                    required
+                                                    type="text"
+                                                    placeholder="Password"
+                                                    defaultValue="Password"
+                                                />
+                                                <Form.Control.Feedback type="invalid">
+                                                    Write a correct password
+                                                </Form.Control.Feedback>
+                                            </InputGroup>
+                                        </Form.Group>
+                                    </Form.Row>
+                                    <Button variant="primary" type="submit">
+                                        Login
+                                    </Button>
                                     <Button variant="secondary" onClick={this.handleTestMode}>
                                         Test Mode
                                     </Button>
-                                </Modal.Footer>
+                                </Form>
+                                    
+                                
+                            </Modal.Body>
                             </Modal>
                         
         let menu = <div className="home">
@@ -248,13 +333,13 @@ export default class Home extends React.Component {
                 </div>
 
         if (this.state.firstRender === true) {
+            // this.setState({ firstRender: false })
             return (
                 <>
                 {this.state.showModal === true ? loginModal : null}
                 <Header/>
                 <div>{menu}</div>
                 </>)
-            this.setState({ firstRender: false })
         } else {
             return (
                <>
