@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { useEffect, useLayoutEffect, useState, createRef } from 'react';
 import moment from 'moment';
 import './Message.scss';
 
-export default function Message(props) {
+const Message = (props) => {
     const { data, isMine, startsSequence, endsSequence, showTimestamp } = props;
 
     const friendlyTimestamp = moment(data.timestamp).format('LLLL');
@@ -28,3 +28,4 @@ export default function Message(props) {
       </div>
     );
 }
+export default Message;

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useLayoutEffect, useEffect } from 'react';
 import HintsCarousel from '../../Components/HintsCarousel';
 import NewsCarousel from '../../Components/NewsCarousel';
 import WeatherApp from '../../Components/WeatherApp/WeatherApp';
@@ -18,7 +18,11 @@ import Header from '../../Components/Header';
 import MessengerMobile from "../../Components/Messenger/MessengerMobile.jsx";
 import './ProAssistant.scss';
 
+const MessagesContext = React.createContext(welcomeMessages);
+
 const ProAssistant = () => {   
+    const [firstRender, setFirstRender] = useState(true);
+
     const [activeArticle, setActiveArticle] = useState(0);
     const [newsArticles, setNewsArticles] = useState([]);
     const [key, setKey] = useState("text-editor");
@@ -26,17 +30,43 @@ const ProAssistant = () => {
     const [isOpen, setIsOpen] = useState(false);
     const [myUserID] = useState("new_user")
     const [newMessages, setNewMessages] = useState([]);
+    const [newTempMessages1, setNewTempMessages1] = useState([]);
+    const [newTempMessages2, setNewTempMessages2] = useState([]);
+    const [copyFlag, setCopyFlag] = useState(false);
+
     let history = useHistory();
-    let consec = 0;
+    let consec = 2;
 
     const getNewMessages = () => {
-        setNewMessages([...newMessages, ...testMessages])
+       // setNewMessages([...newMessages, ...testMessages])
+        setNewMessages([...newMessages, ...welcomeMessages])
     }
 
     const getNewsArticles = () => {
         setNewsArticles([...newsArticles, ...testNewsArticles])
     }
  
+    useEffect(() => {
+        if (firstRender === false) { 
+            if (copyFlag === true) {
+                console.log('access useEffect temp')
+                let newMessagesX = newMessages;
+                if (newTempMessages1) {
+                    newMessagesX.push(newTempMessages1);
+                }
+                if (newTempMessages2) {    
+                    newMessagesX.push(newTempMessages2);
+                }
+                setNewMessages(newMessagesX);
+    
+                console.log(newMessages)
+                setCopyFlag(false);
+            }
+        } else {
+            setFirstRender(false);
+        }
+    }, [copyFlag]);
+
     useEffect(() => {
         getNewMessages();
         getNewsArticles();
@@ -47,7 +77,39 @@ const ProAssistant = () => {
                 if (command.articles) {
                     setNewsArticles(command.articles);
                 }
-               
+            
+                if (command.command === 'newConversationLine1') {
+                    setNewTempMessages1({
+                        id: consec + 1,
+                        author: myUserID,
+                        message: 'Hello, good morning.',
+                        timestamp: new Date().getTime()
+                    })
+                    setNewTempMessages2({
+                        id: consec + 2,
+                        author: 'Alan',
+                        message: 'Hi. What can I do for you?',
+                        timestamp: new Date().getTime()
+                    })
+                    consec = consec + 2;
+                    setCopyFlag(true);
+                } else if (command.command === 'newConversationLine2') {
+                    setNewTempMessages1({
+                        id: consec + 1,
+                        author: myUserID,
+                        message: 'Hi there.',
+                        timestamp: new Date().getTime()
+                    })
+                    setNewTempMessages2({
+                        id: consec + 2,
+                        author: 'Alan',
+                        message: 'Hello. Do you need help?',
+                        timestamp: new Date().getTime()
+                    })
+                    consec = consec + 2;
+                    setCopyFlag(true);
+                }
+
                 if (command === 'go:home') {
                     history.push("/")
                 } else if (command === 'go:conversation') {
@@ -71,6 +133,9 @@ const ProAssistant = () => {
 
                 } else if (command === 'go:scheduler') {
                     setKey("scheduler");
+
+                
+
 
 
                 } else if (command === 'newHeadlines') {
@@ -97,7 +162,9 @@ const ProAssistant = () => {
 
             },
         });
-    }, []);
+ 
+    }, []
+    );
     //End of useEffect AlbBtn
 
     //Declare the visual sections: subheader, body and footer
@@ -163,7 +230,8 @@ const ProAssistant = () => {
             {/*  MESSENGER  */}
                          <Col xs={2} md={3} lg={3} style={{ margin: '0', padding: '0', borderRadius: "4px", width: "21.3rem" }}>
                              <Card bg={'light'} text={'dark'} style={{ width: '100%', height: '100%', borderRadius: "4px" }}>
-                                <MessengerMobile style={{ margin: '0', padding: '0', borderRadius: "4px"}} myUserID={myUserID} newMessages={newMessages && newMessages} />
+                                <MessengerMobile style={{ margin: '0', padding: '0', borderRadius: "4px"}} 
+                                 myUserID={myUserID} newMessages={newMessages} />
                             </Card>
                         </Col>
                     </Row>   
@@ -447,3 +515,17 @@ var testMessages = [
     },
 ]
 
+var welcomeMessages = [
+    {
+        id: 1,
+        author: `new_user`,
+        message: '...',
+        timestamp: new Date().getTime()
+    },
+    {
+        id: 2,
+        author: 'orange',
+        message: 'Press the blue button and call me. E.g. Hello, good morning ' ,
+        timestamp: new Date().getTime()
+    }
+]

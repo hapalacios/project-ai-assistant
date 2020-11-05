@@ -1,8 +1,24 @@
-import React from 'react';
+import React, { useEffect, useLayoutEffect, useState, createRef } from 'react';
 import MessageList from './MessageList';
 import './MessengerMobile.scss';
 
-export default function MessengerMobile(props) {
+const  MessengerMobile =  (props) => {
+   //  const [messages, setMessages] = useState([])
+
+   // useEffect(() => {
+
+   //    getMessages();
+   //    console.log('props')
+   //    console.log(props.newMessages)
+      
+
+   // }, [props])
+
+   // const getMessages = () => {
+   //    setMessages([...messages, ...props.newMessages])
+   // }
+
+
    return (
       <div className="messenger-mobile">
          <div className="scrollable-mobile content-mobile">
@@ -11,3 +27,4 @@ export default function MessengerMobile(props) {
       </div>
    );
 }
+export default MessengerMobile;

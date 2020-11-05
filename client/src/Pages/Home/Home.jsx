@@ -230,7 +230,7 @@ export default class Home extends React.Component {
                                                     required
                                                     type="text"
                                                     placeholder="Username"
-                                                    defaultValue="Username"
+                                                    defaultValue=""
                                                     onChange={this.handleChange}
                                                 />
                                                 <Form.Control.Feedback type="invalid">
@@ -245,7 +245,7 @@ export default class Home extends React.Component {
                                                     required
                                                     type="text"
                                                     placeholder="Password"
-                                                    defaultValue="Password"
+                                                    defaultValue=""
                                                 />
                                                 <Form.Control.Feedback type="invalid">
                                                     Write a correct password

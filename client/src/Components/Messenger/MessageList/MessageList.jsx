@@ -1,5 +1,5 @@
-// import React, { useEffect, useState } from 'react';
-import React from 'react';
+import React, { useEffect, useLayoutEffect, useState, createRef} from 'react';
+//import React from 'react';
 // import Compose from '../Compose';
 import Toolbar from '../Toolbar';
 import ToolbarButton from '../ToolbarButton';
@@ -7,17 +7,24 @@ import Message from '../Message/Message';
 import moment from 'moment';
 import './MessageList.scss';
 
-export default function MessageList(props) {
+const MessageList = (props) => {
+     const [elRefs, setElRefs] = useState([]);
      // const [messages, setMessages] = useState([])
 
      // useEffect(() => {
      //      getMessages();
      //      // getMyUserID();
-     // }, [])
+     //      console.log('props')
+     //      console.log(props.newMessages)
+     // }, [props])
 
      // const getMessages = () => {
      //      setMessages([...messages, ...props.newMessages])
      // }
+
+     useEffect(() => {
+          setElRefs((refs) =>  Array(20).fill().map((_, j) =>   refs[j] || createRef()  ));
+     }, []);
 
      const renderMessages = () => {
           let i = 0;
@@ -66,7 +73,7 @@ export default function MessageList(props) {
                }
 
                tempMessages.push(
-                    <Message
+                    <Message ref={elRefs[i]}
                          key={i}
                          isMine={isMine}
                          startsSequence={startsSequence}
@@ -107,4 +114,4 @@ export default function MessageList(props) {
           </div>
      );
 }
-
+export default MessageList;
