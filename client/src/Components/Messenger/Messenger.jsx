@@ -3,11 +3,11 @@ import ConversationList from './ConversationList';
 import MessageList from './MessageList';
 import './Messenger.scss';
 
-export default function Messenger(props) {
+const  Messenger = (props) =>  {
      return (
           <div className="messenger">
                <div className="scrollable sidebar">
-                    <ConversationList />
+                    <ConversationList conversations={props.conversations}/>
                </div>
 
                <div className="scrollable content">
@@ -16,3 +16,4 @@ export default function Messenger(props) {
           </div>
      );
 }
+export default Messenger;

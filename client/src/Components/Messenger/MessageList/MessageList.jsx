@@ -1,5 +1,4 @@
-import React, { useEffect, useLayoutEffect, useState, createRef} from 'react';
-//import React from 'react';
+import React, { useEffect, useRef, useLayoutEffect, useState, createRef} from 'react';
 // import Compose from '../Compose';
 import Toolbar from '../Toolbar';
 import ToolbarButton from '../ToolbarButton';
@@ -7,24 +6,15 @@ import Message from '../Message/Message';
 import moment from 'moment';
 import './MessageList.scss';
 
+const useMountEffect = fun => useEffect(fun, []);
+
 const MessageList = (props) => {
      const [elRefs, setElRefs] = useState([]);
-     // const [messages, setMessages] = useState([])
+     const myRef = useRef(null)
 
-     // useEffect(() => {
-     //      getMessages();
-     //      // getMyUserID();
-     //      console.log('props')
-     //      console.log(props.newMessages)
-     // }, [props])
-
-     // const getMessages = () => {
-     //      setMessages([...messages, ...props.newMessages])
-     // }
-
-     useEffect(() => {
-          setElRefs((refs) =>  Array(20).fill().map((_, j) =>   refs[j] || createRef()  ));
-     }, []);
+     const executeScroll = () =>  myRef.current.scrollIntoView({ behavior: "smooth" })
+     // run this function from an event handler or an effect to execute scroll 
+     useMountEffect(executeScroll); // Scroll on mount
 
      const renderMessages = () => {
           let i = 0;
@@ -73,7 +63,7 @@ const MessageList = (props) => {
                }
 
                tempMessages.push(
-                    <Message ref={elRefs[i]}
+                    <Message
                          key={i}
                          isMine={isMine}
                          startsSequence={startsSequence}
@@ -82,6 +72,9 @@ const MessageList = (props) => {
                          data={current}
                     />
                );
+
+               executeScroll();
+               executeScroll();
 
                // Proceed to the next message.
                i += 1;
@@ -101,7 +94,11 @@ const MessageList = (props) => {
                     ]}
                />
 
-               <div className="message-list-container">{renderMessages()}</div>
+               <div ref={myRef} id="messagesID" 
+                    className="message-list-container">
+                         {renderMessages()}
+               </div>
+
                {/* TODO: change icons or delete
                <Compose rightItems={[
                     <ToolbarButton key="photo" icon="ion-ios-camera" />,

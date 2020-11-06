@@ -1,4 +1,4 @@
-import React, { useState, useLayoutEffect, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import HintsCarousel from '../../Components/HintsCarousel';
 import NewsCarousel from '../../Components/NewsCarousel';
 import WeatherApp from '../../Components/WeatherApp/WeatherApp';
@@ -17,8 +17,6 @@ import Tab from 'react-bootstrap/Tab';
 import Header from '../../Components/Header';
 import MessengerMobile from "../../Components/Messenger/MessengerMobile.jsx";
 import './ProAssistant.scss';
-
-const MessagesContext = React.createContext(welcomeMessages);
 
 const ProAssistant = () => {   
     const [firstRender, setFirstRender] = useState(true);
@@ -49,7 +47,6 @@ const ProAssistant = () => {
     useEffect(() => {
         if (firstRender === false) { 
             if (copyFlag === true) {
-                console.log('access useEffect temp')
                 let newMessagesX = newMessages;
                 if (newTempMessages1) {
                     newMessagesX.push(newTempMessages1);
@@ -58,8 +55,6 @@ const ProAssistant = () => {
                     newMessagesX.push(newTempMessages2);
                 }
                 setNewMessages(newMessagesX);
-    
-                console.log(newMessages)
                 setCopyFlag(false);
             }
         } else {
@@ -82,13 +77,13 @@ const ProAssistant = () => {
                     setNewTempMessages1({
                         id: consec + 1,
                         author: myUserID,
-                        message: 'Hello, good morning.',
+                        message: command.message1,
                         timestamp: new Date().getTime()
                     })
                     setNewTempMessages2({
                         id: consec + 2,
                         author: 'Alan',
-                        message: 'Hi. What can I do for you?',
+                        message: command.message2,
                         timestamp: new Date().getTime()
                     })
                     consec = consec + 2;
@@ -97,48 +92,240 @@ const ProAssistant = () => {
                     setNewTempMessages1({
                         id: consec + 1,
                         author: myUserID,
-                        message: 'Hi there.',
+                        message: command.message3,
                         timestamp: new Date().getTime()
                     })
                     setNewTempMessages2({
                         id: consec + 2,
                         author: 'Alan',
-                        message: 'Hello. Do you need help?',
+                        message: command.message4,
+                        timestamp: new Date().getTime()
+                    })
+                    consec = consec + 2;
+                    setCopyFlag(true);
+                } else if (command.command === 'newConversationLine3') {
+                    setNewTempMessages1({
+                        id: consec + 1,
+                        author: myUserID,
+                        message: command.message5,
+                        timestamp: new Date().getTime()
+                    })
+                    setNewTempMessages2({
+                        id: consec + 2,
+                        author: 'Alan',
+                        message: command.message6,
+                        timestamp: new Date().getTime()
+                    })
+                    consec = consec + 2;
+                    setCopyFlag(true);
+                } else if (command.command === 'newConversationLine4') {
+                    setNewTempMessages1({
+                        id: consec + 1,
+                        author: myUserID,
+                        message: command.message7,
+                        timestamp: new Date().getTime()
+                    })
+                    setNewTempMessages2({
+                        id: consec + 2,
+                        author: 'Alan',
+                        message: command.message8,
+                        timestamp: new Date().getTime()
+                    })
+                    consec = consec + 2;
+                    setCopyFlag(true);
+                } else if (command.command === 'newConversationLine5') {
+                    setNewTempMessages1({
+                        id: consec + 1,
+                        author: myUserID,
+                        message: command.message9,
+                        timestamp: new Date().getTime()
+                    })
+                    setNewTempMessages2({
+                        id: consec + 2,
+                        author: 'Alan',
+                        message: command.message10,
+                        timestamp: new Date().getTime()
+                    })
+                    consec = consec + 2;
+                    setCopyFlag(true);
+                } else if (command.command === 'newConversationLine6') {
+                    setNewTempMessages1({
+                        id: consec + 1,
+                        author: myUserID,
+                        message: command.message11,
+                        timestamp: new Date().getTime()
+                    })
+                    setNewTempMessages2({
+                        id: consec + 2,
+                        author: 'Alan',
+                        message: command.message12,
+                        timestamp: new Date().getTime()
+                    })
+                    consec = consec + 2;
+                    setCopyFlag(true);
+                } else if (command.command === 'newConversationLine7') {
+                    setNewTempMessages1({
+                        id: consec + 1,
+                        author: myUserID,
+                        message: command.message13,
+                        timestamp: new Date().getTime()
+                    })
+                    setNewTempMessages2({
+                        id: consec + 2,
+                        author: 'Alan',
+                        message: command.message14,
+                        timestamp: new Date().getTime()
+                    })
+                    consec = consec + 2;
+                    setCopyFlag(true);
+                } else if (command.command === 'newConversationLine8') {
+                    setNewTempMessages1({
+                        id: consec + 1,
+                        author: myUserID,
+                        message: command.message15,
+                        timestamp: new Date().getTime()
+                    })
+                    setNewTempMessages2({
+                        id: consec + 2,
+                        author: 'Alan',
+                        message: command.message16,
+                        timestamp: new Date().getTime()
+                    })
+                    consec = consec + 2;
+                    setCopyFlag(true);
+                } else if (command.command === 'newConversationLine9') {
+                    setNewTempMessages1({
+                        id: consec + 1,
+                        author: myUserID,
+                        message: command.message17,
+                        timestamp: new Date().getTime()
+                    })
+                    setNewTempMessages2({
+                        id: consec + 2,
+                        author: 'Alan',
+                        message: command.message18,
+                        timestamp: new Date().getTime()
+                    })
+                    consec = consec + 2;
+                    setCopyFlag(true);
+                } else if (command.command === 'newConversationLine10') {
+                    setNewTempMessages1({
+                        id: consec + 1,
+                        author: myUserID,
+                        message: command.message19,
+                        timestamp: new Date().getTime()
+                    })
+                    setNewTempMessages2({
+                        id: consec + 2,
+                        author: 'Alan',
+                        message: command.message20,
+                        timestamp: new Date().getTime()
+                    })
+                    consec = consec + 2;
+                    setCopyFlag(true);
+                } else if (command.command === 'newConversationLine11') {
+                    setNewTempMessages1({
+                        id: consec + 1,
+                        author: myUserID,
+                        message: command.message21,
+                        timestamp: new Date().getTime()
+                    })
+                    setNewTempMessages2({
+                        id: consec + 2,
+                        author: 'Alan',
+                        message: command.message22,
+                        timestamp: new Date().getTime()
+                    })
+                    consec = consec + 2;
+                    setCopyFlag(true);
+                } else if (command.command === 'newConversationLine12') {
+                    setNewTempMessages1({
+                        id: consec + 1,
+                        author: myUserID,
+                        message: command.message23,
+                        timestamp: new Date().getTime()
+                    })
+                    setNewTempMessages2({
+                        id: consec + 2,
+                        author: 'Alan',
+                        message: command.message24,
+                        timestamp: new Date().getTime()
+                    })
+                    consec = consec + 2;
+                    setCopyFlag(true);
+                } else if (command.command === 'newConversationLine13') {
+                    setNewTempMessages1({
+                        id: consec + 1,
+                        author: myUserID,
+                        message: command.message25,
+                        timestamp: new Date().getTime()
+                    })
+                    setNewTempMessages2({
+                        id: consec + 2,
+                        author: 'Alan',
+                        message: command.message26,
+                        timestamp: new Date().getTime()
+                    })
+                    consec = consec + 2;
+                    setCopyFlag(true);
+                } else if (command.command === 'newConversationLine14') {
+                    setNewTempMessages1({
+                        id: consec + 1,
+                        author: myUserID,
+                        message: command.message27,
+                        timestamp: new Date().getTime()
+                    })
+                    setNewTempMessages2({
+                        id: consec + 2,
+                        author: 'Alan',
+                        message: command.message28,
                         timestamp: new Date().getTime()
                     })
                     consec = consec + 2;
                     setCopyFlag(true);
                 }
+                
 
-                if (command === 'go:home') {
+                if (command.command === 'go:home') {
+                    alanBtn().deactivate();
+                    alanBtn().remove();
                     history.push("/")
-                } else if (command === 'go:conversation') {
+                } else if (command.command === 'go:conversation') {
+                    alanBtn().deactivate();
+                    alanBtn().remove();
                     history.push("/conversationapp")
-                } else if (command === 'go:assistant') {
+                } else if (command.command === 'go:assistant') {
+                    alanBtn().deactivate();
+                    alanBtn().remove();
                     history.push("/proassistant")
-                } else if (command === 'go:newfeatures') {
+                } else if (command.command === 'go:newfeatures') {
+                    alanBtn().deactivate();
+                    alanBtn().remove();
                     history.push("/newfeatures")
-                } else if (command === 'go:about') {
+                } else if (command.command === 'go:about') {
+                    alanBtn().deactivate();
+                    alanBtn().remove();
                     history.push("/about")
+                }
 
-                } else if (command === 'go:texteditor') {
+                if (command.command === 'go:texteditor') {
                     setKey("text-editor");
 
-                } else if (command === 'write:texteditor') {
+                } else if (command.command === 'write:texteditor') {
                     setKey("text-editor");
 
-                } else if (command === 'read:texteditor') {
+                } else if (command.command === 'read:texteditor') {
                     setKey("text-editor");
                     alanBtn().playText(textEditorData);
 
-                } else if (command === 'go:scheduler') {
+                } else if (command.command === 'go:scheduler') {
                     setKey("scheduler");
-
+                }
                 
 
 
 
-                } else if (command === 'newHeadlines') {
+                if (command === 'newHeadlines') {
                     setNewsArticles(articles);
                     // console.log(newsArticles)
                     setActiveArticle(-  1);
@@ -162,7 +349,6 @@ const ProAssistant = () => {
 
             },
         });
- 
     }, []
     );
     //End of useEffect AlbBtn
