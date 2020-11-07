@@ -12,17 +12,33 @@ export default class NewFeatures extends React.Component {
       this.alanBtnInstance = alanBtn({
          key: '2261ebd22a2fd31af3071800c940abf72e956eca572e1d8b807a3e2338fdd0dc/stage',
          onCommand: (commandData) => {
-            if (commandData.command === 'go:conversation') {
+            if (commandData.command === 'go:home') {
+               alanBtn().deactivate();
+               alanBtn().remove();
+               this.props.history.push("/")
+            } else if (commandData.command === 'go:conversation') {
+               alanBtn().deactivate();
+               alanBtn().remove();
                this.props.history.push("/conversationapp")
             } else if (commandData.command === 'go:assistant') {
+               alanBtn().deactivate();
+               alanBtn().remove();
                this.props.history.push("/proassistant")
             } else if (commandData.command === 'go:newfeatures') {
+               alanBtn().deactivate();
+               alanBtn().remove();
                this.props.history.push("/newfeatures")
             } else if (commandData.command === 'go:about') {
+               alanBtn().deactivate();
+               alanBtn().remove();
                this.props.history.push("/about")
             }
          },
       });
+   }
+   componentWillUnmount() {
+      this.alanBtnInstance.deactivate();
+      this.alanBtnInstance.remove();
    }
    render() {
       return (

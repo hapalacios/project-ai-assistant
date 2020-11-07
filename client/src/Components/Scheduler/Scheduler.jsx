@@ -4,7 +4,7 @@ import './Scheduler.scss'
 
 class Scheduler extends React.Component {
       render() {
-            return <ScheduleComponent currentView='Month' selectedDate={new Date(2020, 9, 28)}>  
+            return <ScheduleComponent currentView='Month' selectedDate={new Date(2020, 10, 11)}>  
                      <Inject services ={[ Day, Week, WorkWeek, Month, Agenda]} />
                   </ScheduleComponent>
       }

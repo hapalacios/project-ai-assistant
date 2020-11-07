@@ -2,17 +2,16 @@ import React, { useEffect, useState } from "react";
 import { createMuiTheme, Container, ThemeProvider } from "@material-ui/core";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import CssBaseline from "@material-ui/core/CssBaseline";
-
 import Weather from "./Weather.jsx";
 
-export default function WeatherApp() {
-  const [city, setCity] = useState("Toronto");
+const WeatherApp = (props) => {
+  const [city, setCity] = useState(props.city);
   const [error, setError] = useState(null);
   const [currentWeather, setCurrentWeather] = useState({});
   const [forecast, setForecast] = useState([]);
 
   useEffect(() => {
-    getWeather(city)
+    getWeather(props.city || 'Toronto')
       .then(weather => {
         setCurrentWeather(weather);
         setError(null);
@@ -20,7 +19,7 @@ export default function WeatherApp() {
       .catch(err => {
         setError(err.message);
       });
-  }, [city, error]);
+  }, [props.city, error]);
   
   const handleCityChange = city => {
     setCity(city);
@@ -115,3 +114,4 @@ function mapDataToWeatherInterface(data) {
 
   return mapped;
 }
+export default  WeatherApp;

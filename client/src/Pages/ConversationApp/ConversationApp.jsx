@@ -10,9 +10,7 @@ import './ConversationApp.scss';
 
 const ConversationApp = () => {   
    const [firstRender, setFirstRender] = useState(true);
-
    const [conversations, setConversations] = useState([]);
-
 
    const [activeArticle, setActiveArticle] = useState(0);
    const [newsArticles, setNewsArticles] = useState([]);

@@ -21,9 +21,17 @@ import './ProAssistant.scss';
 const ProAssistant = () => {   
     const [firstRender, setFirstRender] = useState(true);
 
+    const [city, setCity] = useState('');
+    const [tempCity, setTempCity] = useState('');
+    const [copyCityFlag, setCopyCityFlag] = useState(false);
+
     const [activeArticle, setActiveArticle] = useState(0);
     const [newsArticles, setNewsArticles] = useState([]);
-    const [key, setKey] = useState("text-editor");
+
+    const [key, setKey] = useState("");
+    const [tempKey, setTempKey] = useState("");
+    const [copyKeyFlag, setCopyKeyFlag] = useState(false);
+
     const [textEditorData, setTextEditorData] = useState("Write some text here...");
     const [isOpen, setIsOpen] = useState(false);
     const [myUserID] = useState("new_user")
@@ -42,6 +50,14 @@ const ProAssistant = () => {
 
     const getNewsArticles = () => {
         setNewsArticles([...newsArticles, ...testNewsArticles])
+    }
+
+    const getWeatherCity = () => {
+        setCity('Toronto')
+    }
+
+    const getTab = () => {
+        setKey('text-editor')
     }
  
     useEffect(() => {
@@ -63,8 +79,35 @@ const ProAssistant = () => {
     }, [copyFlag]);
 
     useEffect(() => {
+        if (firstRender === false) {
+            if (copyCityFlag === true) {
+                setCity(tempCity);
+                setCopyCityFlag(false);
+            }
+        } else {
+            setFirstRender(false);
+        }
+    }, [copyCityFlag]);
+
+    useEffect(() => {
+        if (firstRender === false) {
+            if (copyKeyFlag === true) {
+                setKey(tempKey);
+                console.log('here 909')
+                console.log(tempKey)
+                console.log(key)
+                setCopyKeyFlag(false);
+            }
+        } else {
+            setFirstRender(false);
+        }
+    }, [copyKeyFlag]);
+
+    useEffect(() => {
         getNewMessages();
         getNewsArticles();
+        getWeatherCity();
+        getTab();
 
         alanBtn({
             key: '2261ebd22a2fd31af3071800c940abf72e956eca572e1d8b807a3e2338fdd0dc/stage',
@@ -318,11 +361,28 @@ const ProAssistant = () => {
                     setKey("text-editor");
                     alanBtn().playText(textEditorData);
 
-                } else if (command.command === 'go:scheduler') {
+                } else if (command.command === 'open:scheduler') {
                     setKey("scheduler");
+                    setTempKey("scheduler");
+                    setCopyKeyFlag(true);
+                } else if (command.command === 'open:texteditor') {
+                    setKey("text-editor");
+                    setTempKey("text-editor");
+                    setCopyKeyFlag(true);
                 }
                 
+                if (command.command === 'showCityWeather' ) {
+                    setTempCity(command.newCity);
+                    setCity(command.newCity);
+                    setCopyCityFlag(true);
+                }
 
+                if (command.command === 'showCalendarMonth') {
+                    // setTempCity(command.newCity);
+                    // setCity(command.newCity);
+                    // setCopyCityFlag(true);
+                }
+                
 
 
                 if (command === 'newHeadlines') {
@@ -379,7 +439,7 @@ const ProAssistant = () => {
                                     <Card.Body style={{   margin: '0', padding: '0', borderRadius: "4px",
                                            marginTop: '0.9rem',  border: '1px solid transparent',
                                            backgroundColor: 'transparent' }}>                                        
-                                        <WeatherApp />
+                                        <WeatherApp city={city} />
                                     </Card.Body>
                                 </Card>
                             </Col>
@@ -399,7 +459,8 @@ const ProAssistant = () => {
                             </Card>
                         </Col>
              {/* BODY  - CENTER  */}
-                         <Col xs={3} md={3} lg={6} style={{ margin: '0', padding: '0', borderRadius: "4px", width: "100%"}}>
+                         <Col xs={3} md={3} lg={6} 
+                              style={{ margin: '0', padding: '0', borderRadius: "4px", width: "100%"}}>
                             <Tabs id="tab-body"
                                   activeKey={key}
                                   onSelect={(k) => setKey(k)}
