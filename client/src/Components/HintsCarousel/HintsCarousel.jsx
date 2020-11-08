@@ -50,6 +50,41 @@ const HintsCarousel = () => {
                          </h4>
                     </Carousel.Item>
 
+                    <Carousel.Item interval={intervalTime}
+                         className="hints-carousel__item">
+                         <h5 className="hints-carousel__try-saying">Try asking</h5>
+                         <p className="hints-carousel__text">What is the Weather in Toronto</p>
+                         <h5 className="hints-carousel__category">Weather</h5>
+                         <p className="hints-carousel__text">E.g. Weather in New York City, Winnipeg, Vancouver, Montreal, Ottawa, Los Angeles, Miami</p>
+                         <h4 className="hints-carousel__title">
+                              Weather by Country
+                         </h4>
+                    </Carousel.Item>
+
+                    <Carousel.Item interval={intervalTime}
+                         className="hints-carousel__item">
+                         <h5 className="hints-carousel__try-saying">Command OPEN</h5>
+                         <p className="hints-carousel__text">Try: OPEN scheduler</p>
+                         <h5 className="hints-carousel__category">Commands</h5>
+                         <p className="hints-carousel__text">E.g. Open: Text editor</p>
+                         <p className="hints-carousel__text">E.g. Open: Scheduler</p>
+                         <h4 className="hints-carousel__title">
+                              Command OPEN
+                         </h4>
+                    </Carousel.Item>
+
+                    <Carousel.Item interval={intervalTime}
+                         className="hints-carousel__item">
+                         <h5 className="hints-carousel__try-saying">Command GO</h5>
+                         <p className="hints-carousel__text">Try: GO to the about page</p>
+                         <h5 className="hints-carousel__category">Commands</h5>
+                         <p className="hints-carousel__text">E.g. Open: Go to home page</p>
+                         <p className="hints-carousel__text">E.g. Open: Go to the conversation page</p>
+                         <h4 className="hints-carousel__title">
+                              Command GO
+                         </h4>
+                    </Carousel.Item>
+
                </Carousel>
             </div>
 

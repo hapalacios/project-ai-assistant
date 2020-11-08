@@ -21,6 +21,8 @@ import './ProAssistant.scss';
 const ProAssistant = () => {   
     const [firstRender, setFirstRender] = useState(true);
 
+    const [data, setData] = useState([]);
+
     const [city, setCity] = useState('');
     const [tempCity, setTempCity] = useState('');
     const [copyCityFlag, setCopyCityFlag] = useState(false);
@@ -50,6 +52,11 @@ const ProAssistant = () => {
 
     const getNewsArticles = () => {
         setNewsArticles([...newsArticles, ...testNewsArticles])
+    }
+
+
+    const getData = () => {
+        setData([...data, ...testData])
     }
 
     const getWeatherCity = () => {
@@ -108,6 +115,7 @@ const ProAssistant = () => {
         getNewsArticles();
         getWeatherCity();
         getTab();
+        getData();
 
         alanBtn({
             key: '2261ebd22a2fd31af3071800c940abf72e956eca572e1d8b807a3e2338fdd0dc/stage',
@@ -469,7 +477,9 @@ const ProAssistant = () => {
                                     <TextEditor data={textEditorData && textEditorData}  />
                                 </Tab>
                                 <Tab eventKey="scheduler" title="Scheduler">
-                                    <Scheduler />
+                                     <Scheduler  />
+
+                                    {/* <Scheduler data={data} year={2020} month={10} day={12} /> */}
                                 </Tab>
                             </Tabs>
                         </Col>
@@ -500,6 +510,52 @@ const ProAssistant = () => {
 }
 export default ProAssistant;
 //Footer with send email to Developer capabilities coming for Sprint3.
+
+var testData =
+    [{
+        Id: 2,
+        Subject: 'Meeting',
+        StartTime: new Date(2020, 10, 12, 10, 0),
+        EndTime: new Date(2020, 10, 12, 12, 30),
+        IsAllDay: false,
+        RecurrenceRule: 'FREQ=DAILY;INTERVAL=1;COUNT=5',
+    }];
+
+var testData2 = [
+    {
+        Id: 1,
+        Subject: 'Meeting',
+        EndTime: new Date(2020, 10, 17, 12, 30),
+    }
+]
+
+var testData2 = [
+    {
+        Id: 1,
+        Subject: 'Meeting',
+        EndTime: new Date(2020, 10, 17, 12, 30)
+    },
+    {
+        Id: 2,
+        Subject: 'Conference',
+        EndTime: new Date(2020, 10, 19, 10, 30)
+    },
+    {
+        Id: 3,
+        Subject: 'ZoomCall',
+        EndTime: new Date(2020, 10, 21, 12, 30)
+    },
+    {
+        Id: 4,
+        Subject: 'Groceries',
+        EndTime: new Date(2020, 10, 21, 14, 30)
+    },
+    {
+        Id: 5,
+        Subject: 'Running',
+        EndTime: new Date(2020, 10, 21, 16, 30)
+    }
+]
 
 var testNewsArticles = [
     {
