@@ -35,6 +35,9 @@ const ProAssistant = () => {
     const [copyKeyFlag, setCopyKeyFlag] = useState(false);
 
     const [textEditorData, setTextEditorData] = useState("Write some text here...");
+    const [tempTextEditorData, setTempTextEditorData] = useState("");
+    const [copyTextEditorFlag, setCopyTextEditorFlag] = useState(false);
+
     const [isOpen, setIsOpen] = useState(false);
     const [myUserID] = useState("new_user")
     const [newMessages, setNewMessages] = useState([]);
@@ -54,10 +57,13 @@ const ProAssistant = () => {
         setNewsArticles([...newsArticles, ...testNewsArticles])
     }
 
-
     const getData = () => {
         setData([...data, ...testData])
     }
+
+    // const getTextEditorData = () => {
+    //     setTextEditorData('Write some text here...')
+    // }
 
     const getWeatherCity = () => {
         setCity('Toronto')
@@ -100,9 +106,6 @@ const ProAssistant = () => {
         if (firstRender === false) {
             if (copyKeyFlag === true) {
                 setKey(tempKey);
-                console.log('here 909')
-                console.log(tempKey)
-                console.log(key)
                 setCopyKeyFlag(false);
             }
         } else {
@@ -111,11 +114,23 @@ const ProAssistant = () => {
     }, [copyKeyFlag]);
 
     useEffect(() => {
+        if (firstRender === false) {
+            if (copyTextEditorFlag === true) {
+                setTextEditorData(tempTextEditorData);
+                setCopyTextEditorFlag(false);
+            }
+        } else {
+            setFirstRender(false);
+        }
+    }, [copyTextEditorFlag]);
+
+    useEffect(() => {
         getNewMessages();
         getNewsArticles();
         getWeatherCity();
         getTab();
         getData();
+        // getTextEditorData();
 
         alanBtn({
             key: '2261ebd22a2fd31af3071800c940abf72e956eca572e1d8b807a3e2338fdd0dc/stage',
@@ -337,6 +352,7 @@ const ProAssistant = () => {
                 }
                 
 
+                // navigation commands received from ALAN studio api
                 if (command.command === 'go:home') {
                     alanBtn().deactivate();
                     alanBtn().remove();
@@ -359,17 +375,9 @@ const ProAssistant = () => {
                     history.push("/about")
                 }
 
-                if (command.command === 'go:texteditor') {
-                    setKey("text-editor");
 
-                } else if (command.command === 'write:texteditor') {
-                    setKey("text-editor");
 
-                } else if (command.command === 'read:texteditor') {
-                    setKey("text-editor");
-                    alanBtn().playText(textEditorData);
-
-                } else if (command.command === 'open:scheduler') {
+                if (command.command === 'open:scheduler') {
                     setKey("scheduler");
                     setTempKey("scheduler");
                     setCopyKeyFlag(true);
@@ -377,13 +385,26 @@ const ProAssistant = () => {
                     setKey("text-editor");
                     setTempKey("text-editor");
                     setCopyKeyFlag(true);
+                } else if (command.command === 'write:texteditor') {
+                    setTextEditorData(command.messageWrite);
+                    setTempTextEditorData(command.messageWrite);
+                    setCopyTextEditorFlag(true);
+                } else if (command.command === 'copy:texteditor') {
+                    // setTextEditorData(articles);
+                    // setTempTextEditorData(articles);
+                    setCopyTextEditorFlag(true);
+                } else if (command.command === 'read:texteditor') {
+                    alanBtn().playText(textEditorData);
                 }
-                
+
+
+                // you can ask about any city
                 if (command.command === 'showCityWeather' ) {
                     setTempCity(command.newCity);
                     setCity(command.newCity);
                     setCopyCityFlag(true);
                 }
+
 
                 if (command.command === 'showCalendarMonth') {
                     // setTempCity(command.newCity);

@@ -9,7 +9,6 @@ const usersRoute = require("./routes/usersRoute");
 const cors = require("cors");
 const mysql = require('mysql2');
 
-
 // var corsOptions = {
 //   origin: "http://localhost:8081"
 // };

@@ -1,3 +1,5 @@
+//Routes from different project for study purposes
+
 // Inventories route
 // Verbs: GET, POST, PUT, DELETE
 const express = require('express');

@@ -8,6 +8,28 @@ const HintsCarousel = () => {
             <div className="hints-carousel">
                <Carousel touch={false} keyboard={true} className="hints-carousel__carousel">
 
+                    <Carousel.Item interval={intervalTime}
+                         className="hints-carousel__item">
+                         <h5 className="hints-carousel__try-saying">Try asking/saying</h5>
+                         <p className="hints-carousel__text">Hello, good morning!</p>
+                         <p className="hints-carousel__text">Hi there!</p>
+                         <p className="hints-carousel__text">What is your name?</p>
+                         <h4 className="hints-carousel__title">
+                              Conversation Questions
+                         </h4>
+                    </Carousel.Item>
+
+                    <Carousel.Item interval={intervalTime}
+                         className="hints-carousel__item">
+                         <h5 className="hints-carousel__try-saying">Try asking/saying</h5>
+                         <p className="hints-carousel__text">What is your hobby?</p>
+                         <p className="hints-carousel__text">Hey Siri!</p>
+                         <p className="hints-carousel__text">Give me an advice</p>
+                         <h4 className="hints-carousel__title">
+                              Conversation Questions
+                         </h4>
+                    </Carousel.Item>
+
                     <Carousel.Item interval={intervalTime} 
                       className="hints-carousel__item">
                          <h5 className="hints-carousel__try-saying">Try saying</h5>
@@ -70,6 +92,18 @@ const HintsCarousel = () => {
                          <p className="hints-carousel__text">E.g. Open: Scheduler</p>
                          <h4 className="hints-carousel__title">
                               Command OPEN
+                         </h4>
+                    </Carousel.Item>
+
+                    <Carousel.Item interval={intervalTime}
+                         className="hints-carousel__item">
+                         <h5 className="hints-carousel__try-saying">Command READ/WRITE</h5>
+                         <p className="hints-carousel__text">Try: READ scheduler</p>
+                         <h5 className="hints-carousel__category">Commands</h5>
+                         <p className="hints-carousel__text">E.g. Read text editor</p>
+                         <p className="hints-carousel__text">E.g. Write text editor</p>
+                         <h4 className="hints-carousel__title">
+                              Command READ/WRITE + Text editor
                          </h4>
                     </Carousel.Item>
 
