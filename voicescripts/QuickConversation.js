@@ -3,117 +3,120 @@
 
 title('First quick chat with Alan Ai')
 
-intent("go back to the home page", (p) => {
-    p.play({command:"go:home"});
-    p.play("Navigating to the home screen");
-});
-
-intent("go back to the previous screen", (p) => {
-    p.play({command:"go:back"});
-    p.play("Navigating to the previous screen");
-});
-
-intent("go to the next page","go to the next screen", (p) => {
-    p.play({command:"go:forward"});
-    p.play("Navigating to the next screen");
-});
-
-intent("open the conversation application","go to the conversation screen",
-       "let's have a quick chat", "let's have a quick conversation", (p) => {
-    p.play({command:"go:conversation"});
-    p.play("Navigating to the conversation app screen");
-});
-
-intent("go to the professional assistant page","go to the professional assistant screen",
-       "open the professional assistant page", (p) => {
-    p.play({command:"go:assistant"});
-    p.play("Navigating to the professional assistant screen");
-});
-
-intent("go back to new features page","go to the new features screen",
-       "open the new features page",(p) => {
-    p.play({command:"go:newfeatures"});
-    p.play("Navigating to the new features screen");
-});
-
-intent("go to the about page","go to the about screen",
-       "open the about page", (p) => {
-    p.play({command:"go:about"});
-    p.play("Navigating to the about screen");
-});
-
-intent('hello good morning', p => {
-     p.play( {command: 'newConversationLine1'});
-     p.play('Hi, what can I do for you?',);
+let message1 = 'Hello good morning';
+let message2 = 'Hi, what can I do for you?';
+intent(message1, p => {
+     p.play( {command: 'newConversationLine1', message1, message2} );
+     p.play(message2,);
  });
 
-intent('hi there', p => {
-     p.play( {command: 'newConversationLine2'});
-     p.play('Hello, Do you need help?',);
+let message3 = 'Hi there';
+let message4 = 'Hello, do you need help?';
+intent(message3, p => {
+     p.play( {command: 'newConversationLine2', message3, message4} );
+     p.play(message4,);
  });
 
-intent('what is your name', p => {
-    p.play( { command: 'newConversationLine3' })
-    p.play('My name is Allan. ');
+let message5 = "What is your name?";
+let message6 = 'My name is Alan';
+intent(message5, p => {
+    p.play( { command: 'newConversationLine3', message5, message6 } );
+    p.play(message6);
 });
 
-intent('Hey Siri', p => {
-    p.play( { command: 'newConversationLine4' } )
-    p.play('I am Alan. You must be thinking of someone else.');
+let message7 = 'Hey Siri';
+let message8 = 'I am Alan. You must be thinking of someone else';
+intent(message7, p => {
+    p.play( { command: 'newConversationLine4', message7, message8 } );
+    p.play(message8);
 });
 
-intent('how are you', p => {
-    p.play( { command: 'newConversationLine5' })
-    p.play('I\'m doing well. Thank you');
+let message9 = "How are you?";
+let message10 = "I am doing well. Thank you."; 
+intent(message9, p => {
+    p.play( { command: 'newConversationLine5', message9, message10 } );
+    p.play(message10);
 });
 
+let message11 = 'Do you have a hobby?';
+let message12 = 'Yes, I train myself in my free time to get better at helping you';
 intent('Do you have a hobby', p => {
-    p.play( { command: 'newConversationLine6' })
-    p.play('Yes, I train myself in my free time to get better at helping you.');
+    p.play( { command: 'newConversationLine6', message11, message12 } );
+    p.play(message12);
 });
 
-intent('Talk about yourself','(Tell me|Talk) some(thing|stuff|things) about (you|yourself)',
-    'I want to know (more about you|you better)', p => {
-    p.play( { command: 'newConversation:line8' } ) 
-    p.play(`I\'m Alan, a virtual agent, (within this application.|) 
-           (I can help you get what you need|I can help you with anything 
-            within my programming).`);
+let message13 = 'Talk about yourself';
+let message14 =  'I am Alan, a virtual agent, within this application';
+intent(message13, p => {
+    p.play( { command: 'newConversationLine7', message13, message14 } ); 
+    p.play(message14);
 });
 
-intent('What is $(DATE)', p => {
-    p.play( {command: 'newConversation:line9' } );
+let message15 = 'Tell me something about yourself';
+let message16 =  'I can help you with anything within my programming';
+intent(message15, p => {
+    p.play( { command: 'newConversationLine8', message15, message16 } ); 
+    p.play(message16);
+});
+
+let message17 = 'What is $(DATE)';
+intent(message17, p => {
     const formattedDate = p.DATE.moment.format('dddd, MMMM Do YYYY');
-
-    p.play(`${p.DATE.value} is a date`);
-    p.play(`It is ${formattedDate}`);
+    const message18 = `${p.DATE.value} is a date. It is ${formattedDate}`;
+    p.play( {command: 'newConversationLine9', message17, message18 } );
+    p.play(message18);
+    //p.play(`${p.DATE.value} is a date`);
+    //p.play(`It is ${formattedDate}`);
 });
 // Try: "What is today", "What is tomorrow" and "What is next Friday".
 // The '.value' field of this slot contains the user input, and
 // the '.moment' field contains the moment.js object.
 
-const intentPatterns = [
-    'What is your favorite food',
-    'What food do you like',
-];
 
-intent(intentPatterns, p => {
-    p.play ( {command: 'newConversation:line10' } )
-    p.play('CPU time, yammy!');
+// const intentPatterns = [
+//     'What is your favorite food',
+//     'What food do you like',
+// ];
+let message19 = 'What is your favorite food?';
+let message20 = 'CPU time, yammy!';
+intent(message19, p => {
+    p.play ( {command: 'newConversationLine10', message19, message20 } );
+    p.play(message20);
 });
 
-intent('Are you ready Alan', p => {
-    p.play( { command: 'newConversation:line11' } )
-    p.play(`I am always ready. If you spend some hours teaching me about
+let message21 = 'Are your ready Alan';
+let message22 = `I am always ready. If you spend some hours teaching me about
             the real world probably we will become friends and have real 
-            and fun interactive conversations.`);
+            and fun interactive conversations.`
+intent(message21, p => {
+    p.play( { command: 'newConversationLine11', message21, message22 } );
+    p.play(message22);
 });
 
-intent('I need (an|) advice', p => {
-    p.play( { command: 'newConversation:line12' } )
-    p.play('(OK|Alright) I\'ll do my best to help you.','I\'m not programmed for general advice, but I will do my best.');
+let message23 = "I need and advice";
+let message24 = "(I am not programmed for general advice, but I will do my best.";
+intent(message23, p => {
+    p.play( { command: 'newConversationLine12', message23, message24 } );
+    p.play(message24);
 });
 
-intent('I will be back','Hold on','Give me a (moment|second|sec)', p => {
-    p.play( { command: 'newConversation:line13' } )
-    p.play('OK','Sure, no problem');
+let message25 = 'I will be back';
+let message26 = 'OK';
+intent(message25, p => {
+    p.play( { command: 'newConversationLine13', message25, message26 } );
+    p.play(message26);
+});
+
+let message27 = 'Give me a moment';
+let message28 = 'Sure, no problem';
+intent(message27, p => {
+    p.play( { command: 'newConversationLine14', message27, message28 } );
+    p.play(message28);
+});
+
+let message29 = 'What can I do in this application?';
+let message30 = 'You can ask about news, weather of any city, or open a text-editor for example. Try asking about the weather in Toronto or New York.';
+intent(message29, p => {
+    p.play( { command: 'newConversationLine15', message29, message30 } );
+    p.play(message30);
 });

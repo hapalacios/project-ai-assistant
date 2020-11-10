@@ -349,6 +349,21 @@ const ProAssistant = () => {
                     })
                     consec = consec + 2;
                     setCopyFlag(true);
+                } else if (command.command === 'newConversationLine15') {
+                    setNewTempMessages1({
+                        id: consec + 1,
+                        author: myUserID,
+                        message: command.message29,
+                        timestamp: new Date().getTime()
+                    })
+                    setNewTempMessages2({
+                        id: consec + 2,
+                        author: 'Alan',
+                        message: command.message30,
+                        timestamp: new Date().getTime()
+                    })
+                    consec = consec + 2;
+                    setCopyFlag(true);
                 }
                 
 

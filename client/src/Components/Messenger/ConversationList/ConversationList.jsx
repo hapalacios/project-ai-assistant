@@ -3,7 +3,7 @@ import ConversationSearch from '../ConversationSearch';
 import ConversationListItem from '../ConversationListItem';
 import Toolbar from '../Toolbar';
 import ToolbarButton from '../ToolbarButton';
-import axios from 'axios';
+//import axios from 'axios';
 import './ConversationList.scss';
 
 const ConversationList = (props) =>  {

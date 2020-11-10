@@ -1,6 +1,8 @@
 // {Name: Weather}
 // {Description: Provides weather conditions and details like temperature, humidity, and pressure. Shows a widget with weather information.}
 
+let newCity = 'Toronto'; 
+
 const WEATHER_URL = 'http://api.openweathermap.org/data/2.5/weather?appid=4acdb6432d18884ebc890c13a9c3cc85';
 const FORECAST_URL = 'http://api.openweathermap.org/data/2.5/forecast?appid=4acdb6432d18884ebc890c13a9c3cc85';
 const DATE_FORMAT = 'dddd, MMMM Do YYYY';
@@ -91,6 +93,10 @@ intent(
             p.state.date = p.DATE;
         }
         playWeather(p);
+        
+        newCity = p.LOC.value;
+        p.play( { command: 'showCityWeather', newCity } );
+        
     },
 );
 
@@ -110,6 +116,8 @@ follow('(And|) (what about|on|) $(DATE)', p => {
 follow('(What|and|) (is|) (in|at|about|) $(LOC)', p => {
     p.state.location = p.LOC.value;
     playWeather(p);
+    newCity = p.LOC.value;
+    p.play( { command: 'showCityWeather', newCity } );
 });
 
 follow('(units|) (to|) (in|) $(UNITS metric|standard|imperial|celsius|fahrenheit)', p => {
@@ -192,6 +200,7 @@ async function playWeather(p) {
 
     if (isToday) {
         playToday(p, response.data);
+//        p.play( { command: 'showCityWeather' } );      
     } else {
         playForecast(p, response.data);
     }
