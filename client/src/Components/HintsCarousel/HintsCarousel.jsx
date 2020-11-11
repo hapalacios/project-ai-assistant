@@ -33,7 +33,7 @@ const HintsCarousel = () => {
                     <Carousel.Item interval={intervalTime} 
                       className="hints-carousel__item">
                          <h5 className="hints-carousel__try-saying">Try saying</h5>
-                         <p className="hints-carousel__text1">Give me the latest news from Canada</p>
+                         <p className="hints-carousel__text1">Give me the latest news</p>
                          <h4 className="hints-carousel__title">
                               Latest News
                          </h4>
@@ -51,22 +51,11 @@ const HintsCarousel = () => {
                     </Carousel.Item>
 
                     <Carousel.Item interval={intervalTime} 
-                      className="hints-carousel__item">
-                         <h5 className="hints-carousel__try-saying">Try saying</h5>
-                         <p className="hints-carousel__text">Give me the latest Business news</p>
-                         <h5 className="hints-carousel__category">Terms</h5>
-                         <p className="hints-carousel__text">Toronto, Wall Street, Smartphones, Justin Trudeau...</p>
-                         <h4 className="hints-carousel__title">
-                              News by Terms
-                         </h4>
-                    </Carousel.Item>
-
-                    <Carousel.Item interval={intervalTime} 
                        className="hints-carousel__item">
                          <h5 className="hints-carousel__try-saying">Try saying</h5>
-                         <p className="hints-carousel__text">Give me the news from CTV News</p>
+                         <p className="hints-carousel__text">Give me the news from CNN</p>
                          <h5 className="hints-carousel__category">Sources</h5>
-                         <p className="hints-carousel__text">Google News Canada, CTV News, New York Times, BBC News, CNN, CP24 Toronto, ABC News...</p>
+                         <p className="hints-carousel__text">CNN, New York Times, BBC News, ABC News, Google News Canada...</p>
                          <h4 className="hints-carousel__title">
                               News by Sources
                          </h4>
