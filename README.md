@@ -30,8 +30,8 @@ Second sprint done in one additional week. Improvements in icons, styling. Added
 
 ## 1.1 Beta 1.2
 
-Third sprint. Authentication user added using mysql db. Also there is an option to run the app in test mode, without using a user or db.
+Third sprint. Authentication users added using MySQL DB. Also, there is an option to run the app in test mode without using a user or DB.
 
-RIGHT NOW: fixing some bugs in dictation and adding tasks functions. 
+RIGHT NOW: fixing some bugs in dictation and adding tasks functions.
 
-Also, was detected a bug using API in first app, conversation app (mock of fb messenger). For that reason call to API is disabled to collect ramdon users. Solution: will add data from api ramdom users to a json file, and after that to the same to mysql db.
+Also, was detected a bug using API in the first app, conversation app (mock of FB messenger). For that reason, call to API is disabled to collect random users. Solution: will add data from 'API random users' to a JSON file, and after that to MySQL DB.
