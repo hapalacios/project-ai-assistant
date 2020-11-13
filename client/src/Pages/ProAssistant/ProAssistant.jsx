@@ -7,7 +7,7 @@ import TextEditor from '../../Components/TextEditor';
 import Scheduler from '../../Components/Scheduler';
 import wordsToNumbers from 'words-to-numbers';
 import alanBtn from '@alan-ai/alan-sdk-web';
-import { Link, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import Container from 'react-bootstrap/Container';
 import Card from 'react-bootstrap/Card';
 import Row from 'react-bootstrap/Row';
@@ -565,7 +565,7 @@ var testData2 = [
     }
 ]
 
-var testData2 = [
+var testData3 = [
     {
         Id: 1,
         Subject: 'Meeting',

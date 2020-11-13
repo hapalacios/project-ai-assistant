@@ -5,7 +5,6 @@ import wordsToNumbers from 'words-to-numbers';
 import Carousel from 'react-bootstrap/Carousel';
 import Header from '../../Components/Header';
 import Messenger from '../../Components/Messenger/Messenger.jsx';
-import axios from 'axios';
 import './ConversationApp.scss';
 
 const ConversationApp = () => {   

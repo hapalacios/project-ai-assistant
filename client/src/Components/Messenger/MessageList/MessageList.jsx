@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useLayoutEffect, useState, createRef} from 'react';
+import React, { useEffect, useRef, useState} from 'react';
 // import Compose from '../Compose';
 import Toolbar from '../Toolbar';
 import ToolbarButton from '../ToolbarButton';
@@ -9,7 +9,7 @@ import './MessageList.scss';
 const useMountEffect = fun => useEffect(fun, []);
 
 const MessageList = (props) => {
-     const [elRefs, setElRefs] = useState([]);
+     // const [elRefs, setElRefs] = useState([]);
      const myRef = useRef(null)
 
      const executeScroll = () =>  myRef.current.scrollIntoView({ behavior: "smooth" })

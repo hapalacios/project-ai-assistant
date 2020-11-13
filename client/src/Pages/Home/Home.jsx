@@ -9,13 +9,10 @@ import Col from 'react-bootstrap/Col';
 import Modal from 'react-bootstrap/Modal';
 import InputGroup from 'react-bootstrap/InputGroup';
 import Form from 'react-bootstrap/Form';
-import FormControl from 'react-bootstrap/FormControl';
 import * as yup from 'yup';
-import { Formik, Field } from "formik";
 import axios from 'axios';
 import Header from '../../Components/Header';
 import './Home.scss';  
-import { FormGroup } from 'react-bootstrap';
 
 const globalUrl = 'http://localhost:8080';
 const keyAPI = '' //'?api_key=531deb1a-6b0d-471b-8d77-fe101407ff7e';
